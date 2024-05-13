@@ -1,0 +1,1 @@
+This repository is primarily intended to document the various interview questions and topics encountered while preparing for frontend job interviews abroad. I will continue to update this repository to share my learning and experiences with other frontend developers.
