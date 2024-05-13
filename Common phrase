@@ -1,38 +1,138 @@
 Some common words and phrases in English FE interview.
 
-网页性能：web page performance
-响应式网页设计：responsive web design
-网页性能：web page performance
-随时更新：keep it up to date
-技术问题：technical question
-创建一个新文件夹：make a new folder
-指定一个Git仓库：assign it a Git repository
-整数数组：array of integers
-升序：ascending order
-降序：descending order
-执行环境：execution environment
-框架底层模式：underlying framework pattern
-原生 JavaScript：vanilla JavaScript
-类型强制转换：type coercion
-执行上下文：execution context
-创建阶段：creation phase
-词法环境：lexical environment
-外部环境：external environment
-解析代码：parsing code
-初始分配：initially assign
-事件冒泡：event bubbling
-语法糖：syntax sugar
-CSS预处理器：CSS preprocessor
-镜像：mirror image
-二叉树：binary tree
-递归函数：recursive function
-对称树：Symmetric Tree
-延迟加载：delayed loading
-循环计时器：looping timers
-括号：parenthesis
-方括号：square brackets
-花括号：curly braces
-分号：semicolon
-逗号：comma
-感叹号：exclamation point
-井号：pound sign
+Terminology		
+软件工程	software engineering	
+框架底层模式	underlying framework pattern	
+防抖模式	debounce pattern	/ˈpæt.ən/
+节流模式	throttle pattern	
+整数数组	array of integers	
+对象数组	array of object	
+数字数组	array of number	
+多个对象	multiple objects	/ˈmʌl.tɪ.pəl/ 
+使用场景	use case	
+执行环境	execution environment	
+原生JavaScript	vanilla JavaScript	/vəˈnɪl.ə/ 
+迭代器	iterator	/ɪtəˈreɪtə/
+遍历	traversing	
+编程接口	programming interface	
+相等性检查	equality check	
+执行上下文	execution context	
+类型强制转换	type coercion	/kəʊˈɜː.ʃən/ 
+创建阶段	creation phase	/feɪz/
+词法环境	lexical environment	/ˈlek.sɪ.kəl/
+外部环境	external environments	
+解析代码	parsing code	
+初始分配	initially assign	
+事件冒泡 	event bubbling	
+事件监听器	event listener	
+重新包装	rewrap	
+语法糖	syntax sugar	
+CSS预处理器	CSS preprocessor	/ˌpriːˈprəʊsesə/
+脚本语言	scripting language	
+二叉树	binary tree	
+递归函数	recursive function	
+对称树	Symmetric Tree	
+回调地狱	Hell callback	
+编程技能	coding skills	
+技术问题	technical question	
+创建一个新文件夹	make a new folder	
+指定一个Git仓库	assign it a Git repository	/rɪˈpɒz.ɪ.tər.i/ 
+创建一个主分支	create a master branches	
+响应式网页设计	responsive web design	
+网页性能	web page performance	
+进行测试	approach testing	
+调试Web应用程序	debug a web application	
+track progress	跟踪进度 	
+头脑风暴	brainstorming	
+即将推出	coming soon 	
+延迟加载	delayed loading 	
+高排名	high ranking	
+品牌地图	branded map	
+加载速度快	load fast	
+循环计时器	looping timers	
+单线程	a single thread	
+感叹号	exclamation point	/ ˌekskləˈmeɪʃ(ə)n /
+井号	pound sign	
+速查表	Cheat Sheet	
+design flaw	设计缺陷	
+无序列表	unordered list	/ ʌnˈɔːdəd /
+源代码	source code	
+图形表示	graphical representation	/ˌɡræf.ɪ.kəl / 
+发布说明	release note	
+轻量级	lightweight class	
+请求机制	request mechanism	/ ˈmekənɪzəm /
+扩展运算符	spread operator	
+空间复杂度	space complexity	/ kəmˈpleksəti /
+分工合作	division of responsibilities	/ dɪˈvɪʒ(ə)n /
+招聘经理	recruiting manager	
+建立连接	connect establishment	
+三次握手	three-way handshake	
+安全连接	secure connection	
+密钥	secret key	
+编程器环	code ring	
+加密文本	encrypt text	
+||	pipe pipe	
+问号	question mark	
+和号	ampersand	/ˈæm.pə.sænd/
+单引号	single quote	
+双引号	double quotation marks	
+异步加载	asynchronous loading	/eɪˈsɪŋ.krə.nəs/ 
+动态创建	dynamically create	/daɪˈnæm.ɪ.kəl.i/
+轮询机制	polling mechanism	/ˈmek.ə.nɪ.zəm/ 
+运行时加载	runtime loading	
+编译时加载	complie-time loading	
+性能优化	performance optimization	/ˌɒp.tɪ.maɪˈzeɪ.ʃən/
+隐患	security pitfall	/ˈpɪt.fɔːl/ 
+有点复杂	semi-complicated	/ˈsem.i/  /ˈkɒm.plɪ.keɪ.tɪd/
+单位时间	unit of a time	
+事件调用	event invocation	/ˌɪn.vəˈkeɪ.ʃən/
+单元测试	unit test	
+代码质量	code quality	
+柯里化函数	Curried Function	
+日志记录	log record	
+泛型	generic type	/dʒəˈner.ɪk/ 
+嵌套数组	nested array	
+原始值	primitive value	
+值传递	call-by-value	
+引用传递	call-by-reference	
+平衡二叉树	balanced binary tree	
+双链表	double linked list	
+静态标记	static markup	
+最长路径	longest path	
+tabular view	表格视图	
+表单输入	form input	
+表单向导	form wizard	/ˈwɪz.əd/ 
+属性钻取	prop drilling	/drɪlɪŋ/
+电子商务网站	e-commerce site	
+集中管理	manage centrally	
+二叉搜索树	binary search tree	
+树形数据结构	tree data structure	
+子节点	child node / sub-node	
+负无穷大	negative infinity	/ ɪnˈfɪnəti /
+正无穷大	positive infinity	
+小于或等于	less than or equal to	
+大于或等于	greater than or equal to	
+递归关系	recurrence relation	/riˈkʌr.əns/ 
+重复的顺序	in a repeating sequence	
+资源分配	resource allocation	/ˌæl.əˈkeɪ.ʃən/ 
+资源调度	resource scheduling	
+系统开销	system overhead	
+存储机制	storage mechanism	
+版本控制系统	version control system	
+回滚	roll back	
+备份系统	backup system	
+拦截请求	intercept the request	
+独立线程	separate thread 	/θred/
+https 协议	HTTPS protocol	/ˈprəʊ.tə.kɒl/
+缓存功能	caching function	
+幂次方	a power of	
+divisible by	被整除	
+optimal solution	最优解	
+连接的选项  	connected options	
+服务器推送	server push	
+简洁的语法	concise syntax
+clean syntax
+terse  syntax	/tɝːs/
+深入挖掘  	dig deeply	
+现成的  	ready-to-use ready-made	
+		
