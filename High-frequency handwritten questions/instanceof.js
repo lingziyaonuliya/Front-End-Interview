@@ -1,8 +1,9 @@
-1.*instanceof* 运算符用于检测构造函数的 *prototype* 属性是否出现在某个实例对象的原型链上
-2.该方法接收2个参数：一个**实例对象**、一个**构造函数**
-3.若*obj*不是对象或函数，则作为基础数据类型不存在构造函数，返回*false*
-4.若*constructor*类型不是函数，会出现类型报
-5.获取*obj*的原型，沿原型链往上找，直到找到与*constructor.prototype*属性相同的原型返回*true*，到达原型链顶端仍未找到返回*false*
+####
+1.The instanceof operator is used to check whether the prototype property of a constructor appears anywhere in the prototype chain of an instance object.
+2.This method takes two parameters: an instance object and a constructor function
+3.If obj is not an object or a function, it doesn't have a constructor, so it returns false.
+4.If the constructor type is not a function, a type error occurs.
+5.It retrieves the prototype of obj and searches up the prototype chain until it finds a prototype that matches the constructor.prototype property. If it finds one, it returns true; if it reaches the top of the prototype chain without finding a match, it returns false.
 
 ````
   function myInstanceof (obj, constructor) {
