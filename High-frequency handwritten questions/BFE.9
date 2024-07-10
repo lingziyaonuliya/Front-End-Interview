@@ -1,0 +1,41 @@
+[decode message](https://bigfrontend.dev/problem/decode-message)
+
+```javascript
+/**
+ * @param {string[][]} message
+ * @return {string}
+ * In summary, this function implements a zigzag traversal of a 2D array, 
+ * concatenating the traversed characters in order into a string.
+ */
+function decode(message) {
+  // Initially checks if the passed message is an array and whether it or its first element is empty.
+  // If so, it returns an empty string immediately.
+  if (!Array.isArray(message) || message.length === 0 || message[0].length === 0) return '';
+
+  const rows = message.length;
+  const cols = message[0].length;
+  let result = [];
+  let row = 0, col = 0; // Both are initialized to 0, indicating the current position at the top-left corner of the array.
+  let direction = 1; // Initialized to 1, indicating the traversal direction, where positive values mean downwards and negative values upwards.
+
+  // Uses a loop with the condition that row and col do not exceed the bounds of rows and cols.
+  while (col < cols) {
+    result.push(message[row][col]);
+    // Calculates the next traversal position nextRow and nextCol based on the current direction.
+    let nextRow = row + direction;
+    let nextCol = col + 1;
+
+    // Checks if nextRow and nextCol are out of bounds. If they are, changes the direction and recalculates nextRow.
+    if (nextRow < 0 || nextRow >= rows) {
+      direction *= -1;
+      nextRow = row + direction;
+    }
+    // Updates row and col to the new traversal position.
+    row = nextRow;
+    col = nextCol;
+  }
+  // uses the join('') method to concatenate all characters in the result array into a single string and returns it.
+  return result.join('');
+}
+
+
