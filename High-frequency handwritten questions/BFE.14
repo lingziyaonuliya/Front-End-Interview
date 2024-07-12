@@ -1,0 +1,26 @@
+[memo()]:(https://bigfrontend.dev/problem/implement-general-memoization-function)
+
+/**
+ * This memo function efficiently caches the results of function calls. 
+ * When the same arguments are passed again, the cached result is returned, thus avoiding redundant calculations.
+ * @param {Function} func - The function to be memoized.
+ * @param {Function} [resolver] - An optional function to generate a unique key for the arguments. If not provided, defaults to stringifying the arguments.
+ * @returns {Function} A new memoized function.
+ */
+
+function memo(func, resolver) {    
+  // create a Map object to serve as our cache storage
+  const map = new Map();
+  return function(...args) {
+    // If a resolver function is provided, we use it with the given arguments to generate the key. 
+    // Otherwise, default to using `Array.from(arguments).join('_') `to generate the key.
+    const key = resolver ? resolver(...args) : args.join('_');
+    // check if the generated key exists in the Map
+    if (!map.has(key)) {
+      // invoke the original func with the provided arguments to obtain the result, store this result in the Map using the generated key
+      map.set(key, func.apply(this, args));
+    }
+    // Return the cached result
+    return map.get(key);
+  };
+}
