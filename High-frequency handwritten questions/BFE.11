@@ -1,0 +1,15 @@
+[what-is-composition-create-a-pipe]:(https://bigfrontend.dev/problem/what-is-composition-create-a-pipe)
+
+/**
+ * @param {Array<(arg: any) => any>} funcs 
+ * @return {(arg: any) => any}
+ * The reduce method is used to sequentially apply each function to 
+ * the result of the previous function call, starting with the initial value. 
+ */
+
+```javaScript
+function pipe(funcs) {
+    return function(value) {
+        return funcs.reduce((acc, func) => func(acc), value)
+    }
+}
