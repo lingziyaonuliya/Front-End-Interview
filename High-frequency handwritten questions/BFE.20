@@ -1,0 +1,15 @@
+[Detect data type in JavaScript]:(https://bigfrontend.dev/problem/detect-data-type-in-JavaScript)
+
+/**
+ * @param {any} data
+ * @return {string}
+ * This function is used to detect the data type of the passed parameter `data`.
+ * invoking the `Object.prototype.toString` method to obtain `data` type string.
+ * To get the required info, we use `slice` method to trim the redundant content.
+ * Finally, applies the `toLowerCase` method to convert the type string into lowercase.
+ */
+
+```javascript
+function detectType(data) {
+    return Object.prototype.toString.call(data).slice(8, -1).toLowerCase();
+}
