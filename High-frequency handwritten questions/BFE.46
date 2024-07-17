@@ -1,0 +1,24 @@
+[implement `_.once()`]:(https://bigfrontend.dev/problem/implement-once)
+
+/** 
+Generate a wrap function, ensure the passed function is invoked once.
+Always return the result of the first call
+*/
+
+```javascript
+function once(func) {
+	// result is serve as the storage of the result of the function call
+  // called used to indicate whether the function has been invoked
+  let result, called = false;
+  // return a new function 
+  return function(...args) {
+  	// if the function is not been called yet
+    if(!called) {
+      // call the passed func and store the result
+      result = func.call(this, ...args)
+      // change the flag to show that the function has been called
+      called = true
+    }
+    return result;
+  }
+}
