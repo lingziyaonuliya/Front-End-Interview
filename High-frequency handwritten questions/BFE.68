@@ -1,0 +1,21 @@
+[get DOM tags]:(https://bigfrontend.dev/problem/get-DOM-tags)
+/**
+The function is designed to extract all the tag names from the nodes within a given tree structure, returning them as an array.
+The function employs a depth-first search strategy to traverse the tree.
+*/
+
+function getTags(tree) {
+	// Initialize a set to store unique tag names
+  const tags = new Set()
+  const dfs = function(root) {
+    if(!root) return // boundry check for the node
+    // check if the node has a tag name, add the tag name to the set
+    if(tree.tagName) tags.add(root.tagName.toLowerCase());
+    for(let child of root.children) {
+    	// recursively processes each child of the current node
+      dfs(child)
+    }
+  }
+  dfs(tree) // apply the dfs function to the passing tree
+  return Array.from(tags); // Convert the Set to an array and return
+}
