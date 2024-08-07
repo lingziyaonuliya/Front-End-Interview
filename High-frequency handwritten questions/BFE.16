@@ -1,0 +1,45 @@
+[create an Event Emitter]:(https://bigfrontend.dev/problem/create-an-Event-Emitter)
+
+###
+Today, we're going to implement an EventEmitter, which is very useful in our daily work. 
+This class will include subscribe() and emit() methods, and the subscribe() method will 
+return a release() function that can be used to unsubscribe.
+
+```javascript
+class EventEmitter {
+  constructor() {
+    this.subscriptions = new Map();
+  }
+
+  subscribe(eventName, callback) {
+    if (typeof callback !== 'function') {
+      throw new TypeError('Callback must be a function');
+    }
+
+    if (!this.subscriptions.has(eventName)) {
+      this.subscriptions.set(eventName, new Set());
+    }
+
+    const callbacks = this.subscriptions.get(eventName);
+    const subscription = { callback };
+    callbacks.add(subscription);
+
+    return {
+      release: () => {
+        callbacks.delete(subscription);
+        if (callbacks.size === 0) {
+          this.subscriptions.delete(eventName);
+        }
+      }
+    };
+  }
+
+  emit(eventName, ...args) {
+    const callbacks = this.subscriptions.get(eventName);
+    if (callbacks) {
+      for (const subscription of Array.from(callbacks)) {
+        subscription.callback(...args);
+      }
+    }
+  }
+}
