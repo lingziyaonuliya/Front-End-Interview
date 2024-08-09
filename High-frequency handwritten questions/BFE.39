@@ -1,0 +1,20 @@
+[39. implement range()]:(https://bigfrontend.dev/problem/implement-range/discuss?sort=time)
+
+####
+Basically, this range function need us to implement an iterator.
+
+```javascript
+function range(from, to) {
+  return {
+    [Symbol.iterator]() {
+      return {
+        next() {
+          if(from <= to){
+            return {value: from++, done: false}
+          }
+          return {value: undefined, done: true}
+        }
+      }
+    }
+  }
+}
