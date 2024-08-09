@@ -1,8 +1,9 @@
 [lit-html 1 - tagged templates]:(https://bigfrontend.dev/problem/lit-html-1-tagged-templates)
-
+                                 
+/**
 The function html is use to concatenate strings and variables into a string.
+/**
 
-```
 function html(strs, ...vals) {
   let str = ''
   // Iterating through the arrays 
@@ -14,10 +15,10 @@ function html(strs, ...vals) {
   //returns the concatenated HTML string
   return str;
 }
-```
+
 /**
 The function render serves to display the result within a specified container. 
-*/
+/**
   
 function render(result, container) {
   //setting the innerHTML property of the container to the value of result
