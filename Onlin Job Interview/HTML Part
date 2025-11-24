@@ -31,7 +31,3 @@ Image processing
 Data encryption/decryption
 Handling complex sorting algorithms
 Processing large datasets or files
-
-Usually need two files: one for main thread and one for the worker.
-Web worker is suitable for some compuationally intensive tasks, such as image processing, data encryption, dealing with a large number of network requests or downloading large files, etc.
-
