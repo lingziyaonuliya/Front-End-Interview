@@ -1,0 +1,26 @@
+1.The difference between 'src' and 'href'
+Both are used to reference external resources:
+src indicates a reference to a resource.It downloads and apply the resource it points to within the document, when the browser parses the element, it will pause the download and process of other resources, until the resource is loaded, compilered and executed. So js script is usually placed at the bottom of the page.
+href represents a hypeetext reference. When the browser recognized the file it points to, it downloads the resources it downloads the resource in parallel and do not stop processing other resources.It is commonly uesed in a, link tags.
+
+2.Understanding of HTML semantics.
+Semanticization refers to the selection of appropriate tags based on the structuring of the content.
+It's machine-friendly, more suitable for search engine, conducive to SEO.
+And also developer-friendly, semantic tags enhance the readability, clearer structure, and better for mantainiability.
+Some common semantic tags:
+<header></header> <nav></nav> <section></section> <aside></aside> <footer></footer>
+
+3.The difference between 'defer' and 'async' in script tag.
+Both defer and async properties are used to load external JS script files desyncchronously without blocking the parsing of the page.
+async attribute represents the loading and the execution of the subsequent documents is asynchronously, while defer atrribute means the loading of subsequent documents and the loading js scriipts are asynchronously, but js scripts only execute after all elements of the document are parsed.
+Without the two attributes, the browser won't wait until the subsequent documents are loaded, it blocks the loading of the subsequent documents.
+
+4.What are the inline-elements? What are the block-level elements?
+in-line elements: a b span img input select strong
+block-level elments: div ul ol li dl dt h1 h2 h3 h4 h5 h6 p
+
+5.Talk about web worker
+Web worker is a mechanism for running JavaScript code in background of browser, separate from the main thread.It avoiding the blocking of the main thread and ensuring the normal interaction of pages.
+Usually need two files: one for main thread and one for the worker.
+Web worker is suitable for some compuationally intensive tasks, such as image processing, data encryption, dealing with a large number of network requests or downloading large files, etc.
+
