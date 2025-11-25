@@ -31,3 +31,12 @@ Image processing
 Data encryption/decryption
 Handling complex sorting algorithms
 Processing large datasets or files
+
+6. What are the commonly used meta tags?
+Meta tags are defined by names and content attributes, which are describe the attribute of web documents.
+charset: used to describe the encoding type of HTML documents.
+keywords: page keywords.
+refresh: page redirects and refreshes.
+viewport: adapted to mobile terminal, control the size and proportion of the viewport.
+content parameters:
+width viewport, height viewport, initial-scale, maximum-scale, minmum-scale, user-scalable
