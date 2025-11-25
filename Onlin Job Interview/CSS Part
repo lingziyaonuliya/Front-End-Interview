@@ -1,0 +1,34 @@
+1.CSS selectors and their priority
+| selector | format | priority weight |
+| --- | --- | --- |
+| id selector | #id | 100 |
+| class selector | #className | 10 |
+| attribute selector | a[ref=“eee”] | 10 |
+| pseudo-class selector | li:last-child | 10 |
+| label selector | div | 1 |
+| pseudo-element selector | p:after | 1 |
+| sub selector | ul>li | 0 |
+| offspring selector | li p | 0 |What
+ps: 
+!important declaration has the highest priority.
+If the priority is the same, the last appear style takes the effect.
+When the sources of the style sheet are different, the order of the priority is: inline style > internal style > external style > browser user-defined style > browser default style
+
+2.The attribute value of display and its function
+| attribute value | function |
+| --- | --- | --- |
+| none | element is not displayed and is removed from document flow |
+| block | The default width is the width of the parent element, and the width and height can be set to wrap the line display |
+| inline | The default width is the content width, and the width and height cannot be set |
+| inline-block | The default width is the content width, and the width and height can be set to display it together |
+| table | The element is displayed as a block-level table |
+| list-item | Display like a block type element and add a style list marker |
+
+block: will monopolize one line, multiple elements will start another line, width, height, padding and margin attributes can be set.
+inline: element won't monopolize a single line, width, height setting is valid, margin, padding can noly be set in horizontal direction.
+inline-block: set the object to an inline object, but the content of the object are presented as block objects, and the subsequent inline objects will be arranged in the same line.
+
+3.What are the ways to hide elements?
+display: none: The render tree won't render this object, so it doesn't occupy the place of the page and does not response to the bound listening event.
+visiblity: none: element still occupies space in the page, but does not response to the bound listening evet.
+opacity: 0: The transparency of the element is 0. But the element still occupies space in the page, and is able to response to the bound listening event.
