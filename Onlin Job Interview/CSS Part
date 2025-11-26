@@ -32,3 +32,43 @@ inline-block: set the object to an inline object, but the content of the object 
 display: none: The render tree won't render this object, so it doesn't occupy the place of the page and does not response to the bound listening event.
 visiblity: none: element still occupies space in the page, but does not response to the bound listening evet.
 opacity: 0: The transparency of the element is 0. But the element still occupies space in the page, and is able to response to the bound listening event.
+z-index: negative value: make other element cover this element to hide it.
+transform: scale(0, 0): Scale the element to 0 to hide the element.The element still occupies the a place in the page, but doesn't response to the bound listening event.
+position: absolute: Hide elements by using absolute positioning to remove elements from the viewing area.
+
+4.Explain the box model
+There are two types of box models in css3: standard box model and IE box model
+The box model is composed of four parts: margin, padding, border, content
+The difference between the standard box model and IE box model is when we set the width and height , the corresponding ranges are different:
+The range of width and height attributes of the standard box model only contains content.
+The range of width and height attributes of the IE box model includes border, padding and content.
+Change the box model of an element by modifying the element's box-sizing property:
+box-sizing: content-box: represents the standard box model (by default)
+box-sizing: border-box: represents the IE box model
+
+5.What's are the features in CSS3?
+added various of css selectors
+border-radius
+multi-column layout
+Shadoweflect
+text-shadow
+text-decoration
+linear-gradient
+transform
+rotation, zoom, positioning, tilt, animation
+
+6.Single and multi-line text overflow hidden 
+single-line text overflows:
+```javascript
+overflow: hidden;
+text-overflow: ellipsis;
+white-space: nowrap;
+```
+multi-line text overflows:
+```javascript
+overflow: hidden;
+text-overflow: ellipsis;
+display:-webkit-box;         
+-webkit-box-orient:vertical;
+-webkit-line-clamp:3;
+```
