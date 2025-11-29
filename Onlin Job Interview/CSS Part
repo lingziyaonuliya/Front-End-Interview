@@ -72,3 +72,45 @@ display:-webkit-box;
 -webkit-box-orient:vertical;
 -webkit-line-clamp:3;
 ```
+
+7.How to implement a horizontal and vertical centering layout
+absolute position: 
+```
+.parent {
+    position: relative;
+}
+ 
+.child {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+```
+set the value of four directions to 0, and set the margin to auto. Suitable for boxes have width and height.
+```
+.parent {
+    position: relative;
+}
+ 
+.child {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+```
+flex layout
+```
+.parent {
+    display: flex;
+    justify-content:center;
+    align-items:center;
+}
+```
+
+8.Understanding of flex layout and the use cases
+Flex layout is a new layout method in CSS3 that makes an element a flex container by setting the display property value to flex, and all its children elments becomes its projects.
+flex-diection: attribute 
