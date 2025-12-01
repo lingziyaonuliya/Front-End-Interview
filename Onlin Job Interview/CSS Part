@@ -113,4 +113,33 @@ flex layout
 
 8.Understanding of flex layout and the use cases
 Flex layout is a new layout method in CSS3 that makes an element a flex container by setting the display property value to flex, and all its children elments becomes its projects.
-flex-diection: attribute 
+The following 6properties are set on the container:
+flex-diection: attribute detemines the direction of the spinle
+flex-wrap: attribute defines how to wrap lines if one axis cannot be lined up
+flex-flow: a shorthand attribute of flex-direction and flex-wrap, default value is row nowrap.
+justify-content: attribute detemines how the item is aligned on the spindle.
+align-items: property defines how items are aligned on the intersection axis.
+align-content: property defines the alignment of multiple axes.If the project has only one axis, this property dosen't work.
+The following 6 properties are set on the project:
+order: defines the order in which items are arranged.
+flex-grow: defines the scale of the project, default value is 0, even there is space to left, it is not enlarged.
+flex-shrink: defines the scale of the project, default value is 1, even if there is not enough space, the project will be scaled down.
+flex-basis: defines the spindle space occupied by the project before allocating excess space. Default value is auto.
+flex-grow: is short for flex-grow, flex-shrink and flex-basis, with a default value of 0 1 auto.
+align-slef: allows a single item have a different alignment than other items, and can override the align-item attribute.Default value is auto.
+
+9.Why do we need clear floats? How to clear floats?
+Floating: in non-IE browser, when the container is not heighted and the sub-elements are floating, the container height cannot be stretched by the content. In this case, the content will overflow outside the container and effect layout.This phenomenon is called floating(overflow)
+Floating elements are out of the document flow and do not take up sapce(causing 'height collapse')
+A floating element rests when it touches the border containing it or the another floating element.
+
+Problems caused by floating elements?
+The height of the parent element cannot be stretched apart, affecting elements of the same level as the parent element
+Non-floating elements of the same level as floating elements will follow.
+If the floating element is not the first element, the element before the element will alse float, otherwise it will affect the display structure o fthe page.
+
+Ways to clear the float:
+Define the height attribute for the parent div.
+Add an empty div tag after the last floating element, and add the clear: both style.
+Parent tags containing floating elements are added to overflow: hidden or overflow: auto
+
