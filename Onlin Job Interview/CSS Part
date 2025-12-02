@@ -143,3 +143,29 @@ Define the height attribute for the parent div.
 Add an empty div tag after the last floating element, and add the clear: both style.
 Parent tags containing floating elements are added to overflow: hidden or overflow: auto
 
+10.Understanding of BFC and how to create a BFC
+Block formatting context(BFC) is an independent layout environment, which can be understood as a container, in which items are placed according to certain rules, and will not affect items in other environments. If an element meets the conditions to trigger the BFC, the element layout in BFC is not externally influenced.
+Conditions to creating BFC:
+Root element: body
+Element setting float: float values other than none
+Element setting absolute positioning: position(absolute, fixed)
+Display value: inline-block, table-cell, table-caption, flex
+overflow value: hidden, auto, scroll
+
+Features of BFC:
+Vertically, it is arranged from top to bottom, which is consistent with the arrangement of the document flow
+In BFC, the margins of two adjacent containers overlap
+When calculating the height of a BFC, you need to calculate the height of the floating element
+The BFC region does not overlap with floating containers
+BFC is an independent container, and the internal elements of the container do not affect the external elements
+The left margin value of each element touches the left border of the container
+
+11.What are the attributes of position and what are the difference?
+absolute:
+Generate an absolutely positioned element relative to a parent element rather than the static position.The position of the element is defined by left, top, right and bottom attributes.
+relative:
+Generate relative positioned elements relative to their original position.The position of the element is defined by the left, top, right and the bottom attributes.
+fixed:
+Generate an absolutely positioned element that specifies the position of the element relative to the viewport of the screen.The position of the element does not change as the screen scrolls, such as the back to top button is usually positioned this way.
+static: The default value is no positioning, and when elements appear in normal document flow, top, bottom, left, right or z-index declarations will be ignored, block-level elements will be arranged vertically from top to bottom, and row-level elements will be arranged from left to right.
+
