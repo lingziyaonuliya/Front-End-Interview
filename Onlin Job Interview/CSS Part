@@ -169,3 +169,43 @@ fixed:
 Generate an absolutely positioned element that specifies the position of the element relative to the viewport of the screen.The position of the element does not change as the screen scrolls, such as the back to top button is usually positioned this way.
 static: The default value is no positioning, and when elements appear in normal document flow, top, bottom, left, right or z-index declarations will be ignored, block-level elements will be arranged vertically from top to bottom, and row-level elements will be arranged from left to right.
 
+12.Achieve a triangle
+```
+div {
+    width: 0;
+    height: 0;
+    border: 100px solid;
+    border-color: orange blue red green;
+}
+```
+
+```
+div {
+    width: 0;
+    height: 0;
+    border-top: 100px solid red;
+    border-right: 100px solid transparent;
+}
+```
+
+13.Achieve a fan
+```
+div{
+    border: 100px solid transparent;
+    width: 0;
+    heigt: 0;
+    border-radius: 100px;
+    border-top-color: red;
+}
+```
+
+14.Draw a 0.5px line
+
+```
+transform: scale(0.5,0.5);
+```
+
+```
+<meta name="viewport" content="width=device-width, initial-scale=0.5, minimum-scale=0.5, maximum-scale=0.5"/>
+```
+The viewport is only for mobile and can only be seen on mobile.
