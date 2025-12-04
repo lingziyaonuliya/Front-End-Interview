@@ -1,0 +1,14 @@
+1.What are the dataTypes in JavaScript and how they differ?
+There are eight data types in JavaScript, they are: undefined, null, boolean, number, string, object, symbol, bigInt.
+Where Symbol and BigInt are new data types in ES6:
+  1.Symbol represents a unique and immutable data type created to resolve possible global variable conflicts.
+  2.BigInt is a numeric type of data that can represent integers in any precision format.BigInt can be used to safely store and manipulate     large integers, even if the Number is outside the range of safe integers that number can represent.
+
+2.What's the different between the two data type?
+The difference between the two types is the storage location:
+  1.The original data type is a simply data segment directly stored in the satck, which occupies a small space and has a fixed size, and       belongs to the frequently used data, so it is strored in the stack.
+  2.An object whose data tyoe is stored in the heap, occupying a large space and having an unfixed size. If stored in the stack, it will       affect the performance of the program.The reference data type stores a pointer on the stack that points to the starting address of the     entity in the heap.
+
+2.How to detect data types?
+typeof: array, object and null will be judged to be an object.
+instanceof: The instanceof operator tests to see if the property of a constructor appears anywhere in the prototype chain of an object.
