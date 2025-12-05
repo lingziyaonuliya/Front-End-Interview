@@ -12,3 +12,32 @@ The difference between the two types is the storage location:
 2.How to detect data types?
 typeof: array, object and null will be judged to be an object.
 instanceof: The instanceof operator tests to see if the property of a constructor appears anywhere in the prototype chain of an object.
+
+4.What are the ways to determine an array?
+ES6:
+```
+Array.isArrray(obj)
+```
+ES5: 
+```
+Object.prototype.toString.call(obj).slice(8,-1) === 'Array';
+obj.__proto__ === Array.prototype;
+obj instanceof Array
+```
+
+5.The difference between null and undefined?
+They are both primitive data type, undefined means there is no defintion, null means an empty object.If you use double equal sign to compare them, it will return true and if you use three equal signto compare them, it will return false.
+
+6.How to realize a instanceof operator?
+The instanceof operator is used to detemine whether the constructor's propertype appears anywhere in the object's prototype chain.
+```
+const myInstanceof = (left, right) => {
+  let proto = Object.getPrototypeOf(left)
+  let prototype = right.prototype
+  while(true) {
+    if(!proto) return false
+    if (proto === prototype) return true
+    proto = Object.getPrototypeOf(proto)
+  }
+}
+```
