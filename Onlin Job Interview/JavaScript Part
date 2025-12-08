@@ -54,3 +54,14 @@ If one is an object and the other is a string, number or symbol.The object will 
 When using the double equal sign for equality, if the types on both sides are not identical, a cast is performed before the comparison.
 When using the third equal sign for equality, if the two types are not the same, the type conversion will not be forced, and will be returned directly.
 When using Object.is() to make an equality comparison, it is generally the same as the third equal sign, which deals with some special cases, such as -0 and +0 are no longer equal, and the two NaNs are equal.
+
+9.What's the difference between arrow function and ordinary function?
+- The arrow function is simpler:
+  1. No arguments can be written directly to empty parentheses
+  2. Only one parameter can be omitted from parentheses
+  3. Only one sentence of the return value can omit curly braces
+
+- The arrow function doesn't have its own 'this', it only inherits 'this' at the upper level of its scope
+- The 'this' pointer inherited by the arrow function never changes
+- The arrow function does not have its own arguments; it accesses the arguments value of its outer function
+- Arrow functions do not have prototype, Call () , bind () , apply () can not change the 'this' direction of an arrow function
