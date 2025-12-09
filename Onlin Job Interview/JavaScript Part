@@ -65,3 +65,46 @@ When using Object.is() to make an equality comparison, it is generally the same 
 - The 'this' pointer inherited by the arrow function never changes
 - The arrow function does not have its own arguments; it accesses the arguments value of its outer function
 - Arrow functions do not have prototype, Call () , bind () , apply () can not change the 'this' direction of an arrow function
+
+10.What is prototypes and prototype chains?
+In JavaScript,almost every objetc has a hidden link to another object.This is so called prototype.
+The prototype chain is simply the series of links connecting these objects together.When you try to access a prototype,JavaScript "walks up" the chain until it finds the prototype or reaches the end of the prototype chain.
+
+rewrite and modify prototype
+```
+function Person(name) {
+  this.name = name
+}
+// modify the prototype
+Person.prototype.getName = function () {}
+const p = new Person('helo')
+console.log(p.__proto__ === Person.prototype) // true
+console.log(p.__proto__ === p.constructor.prototype) // true
+// rewrite prototype
+Person.prototype = {
+  getName: function () {}
+}
+const p = new Person('hello')
+console.log(p.__proto__ === Person.prototype) // true
+console.log(p.__proto__ === p.constructor.prototype) // false
+// turn back
+Person.prototype = {
+  getName: function () {}
+}
+const p = new Person('hello')
+p.constructor = Person
+console.log(p.__proto__ === Person.prototype) // true
+console.log(p.__proto__ === p.constructor.prototype) // true
+
+```
+- prototype chain pointing
+```
+p.__proto__ // Person.prototype
+Person.prototype.__proto__ // Object.prototype
+p.__proto__.__prtto__ // Object.prototype
+p.__proto__.constructor.prototype.__proto__ // Obejct.prototype
+Person.prototype.constructor.prototype.__proto__ // Object.prototype
+p.__proto__.constuctor // Person
+Person.prototype.constructor // Person
+```
+
