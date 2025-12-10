@@ -108,3 +108,14 @@ p.__proto__.constuctor // Person
 Person.prototype.constructor // Person
 ```
 
+11.Explain 'new' operator in JavaScript. What exactly does it do?
+The new operator is used to create an instance object for a given constructor.
+- The execution process is like:
+  1. Create a new empty object
+  2. Sets the prototype of the object to the prototype of the constructor
+  3. Let the function's `this` point to the object and add the constructor's properties to the new object
+  4. Determines the return type of the function, If it is a value type, return the created object. If it is a reference type, it returns the object of that reference type.
+
+12.The difference between a map and a weakMap?
+A Map object is a collection of key/value pairs.
+A WeakMap is a collection of key/value pairs whose keys must be objects, with values of any arbitrary.
