@@ -1,0 +1,41 @@
+##### What is front end routine and why is it essential for spa?
+
+**Front-end routing** (also known as client-side routing) is a technique used in modern web development where the browser—not the server—controls what content is displayed when a user navigates to a new URL.
+
+A Single Page Application (SPA) literally has only one HTML file (usually `index.html`). Without front-end routing, an SPA would be stuck on one URL, or it would break standard browser behaviors.
+
+##### What is the difference between Hash Mode and History Mode?
+
+The main difference between hash mode and history mode is how the URL looks and how the routing is handled under the hood.
+
+Hash mode: uses the hash symbol (#) in the url. It works by listening for the `hashChange` event. The browser naturally ignores everything after the hash when sending requests to the server, Since the hash mode urls are not sent to the server, no special server configurationtion is required.
+
+History mode: on the other hand, uses the HTML 5 history API to create a "clean" standard url path. When routes switched, history mode calls pushState() or replaceState to add or replace a route info into the browser history stack. So users can manage navigation without reloading the page.
+
+To sum up, history mode uses real urls paths, which has better SEO but requires server configuration support.Hash mode uses hash to simulate routing, offering better compstibility and eliminating the need for server configuration.There is no better one, choose them depends on your actual needs.
+
+#####  How the History API Works (pushState & replaceState)
+
+The History API allows JavaScript to manipulate the browser's session history stack without triggering a page reload.
+
+When the route changes, the router uses `pushState()` to add a new entry to the browser's history stack, or `replaceState()` to modify the current entry.
+
+This allows users to use the browser's **Back** and **Forward** buttons seamlessly. Crucially, these methods update the URL **without** triggering a page reload or sending a real HTTP request to the server.
+
+#####  How do you pass parameters between roots?
+
+- Dynamic route params: define a placeholder in the router configuration, usually with a colon.
+
+`/user/:id`
+
+- Query parameters: add key-value pairs at the end of the URL after a question mark.do not require changing the route configuration.
+
+`/search?keyword=value&sort=desc`
+
+Route state: pass complex objects through the router's history state without showing them in the URL
+
+`router.push({ path: '/detail', state: { userData } })`
+
+##### what is batching in the context of Api requests?
+
+**Batching** means combining multiple small requests into **one single network call**.
