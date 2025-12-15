@@ -39,3 +39,43 @@ Route state: pass complex objects through the router's history state without sho
 ##### what is batching in the context of Api requests?
 
 **Batching** means combining multiple small requests into **one single network call**.
+
+##### Talk about the difference between Minification and Obfuscation
+
+Minification is mainly about performance.It removes comments, spaces, and breaks to make teh file size smaller.
+
+Obfuscation is mainly about security and code protection.It transforms the code so that is hard for others to read or reverse-engineer.
+
+In my workflow, I use webpack for minification.Webpack uses the TerserPlugin for minification, Vite uses esbulid,which is faster.
+
+##### Does obfuscation affect performance?
+
+Yes, Heavy obfuscation adds dummy code, increasing the bundle size. The browse needs more time to parse the messy AST.
+
+As modern JS engines try to otimize code.Obfuscation makes logic unpredictable, which prevents the engine from optimizing it, causing slower execution.
+
+So, it;s recommended to heavily obfuscate the specific critical parts, not the entire UI library.
+
+##### How Tree Shaking works?And how does it relate to magnification?
+
+Tree Shaking is a technique we use to remove **dead code**.It analyzes the `import` and `export` statements in code to detect which modules are never used, and removes them from the final bundle.
+
+It relates to minification because they share the same goal: **performance**. Usually, Tree Shaking happens first to remove the garbage, and then Minification happens to compress the rest.
+
+##### Why do we sometimes break production code after minification? 
+
+Here are 3 most common reasons why this happens:
+
+1. Minifiers rename variables to save space.But if the code relies on the string name of the <u>variable</u>, it breaks.
+2. Variable Mangling, so if the code relies on specific class name or function name, the minifier rename them to single letters, The breaks any logic that checks for the original name.
+3. Side effects, after tree shaking, it may removes code that looked useless but was actually important.
+
+##### Can you explain how a mini fair works internally?
+
+A minifier works like a recycling plant, here  are 3 steps that minifier use internally:
+
+1. it parses the original code into an AST (Abstract Syntax Tree)
+2. it runs Transformations on this tree, and applies Mangling and Compression to modify it
+3. it generates the new code string from that optimized tree, printing it out as possible without spaces.
+
+
