@@ -78,4 +78,41 @@ A minifier works like a recycling plant, here  are 3 steps that minifier use int
 2. it runs Transformations on this tree, and applies Mangling and Compression to modify it
 3. it generates the new code string from that optimized tree, printing it out as possible without spaces.
 
+##### How does JavaScript handle asynchronous tasks without blocking the UI?
+
+As JavaScript engine itself is single-threaded, it only has CallSatck and only do one thing at a time.So it has the Web APIs to handle the tasks, and we called Event Loop.
+
+1. Delegation: When the code encounters an async operation, JS hands it over to the Web APIs and immediately moves on to teh next line.Keeping the main thread free.
+2. Queue: Once the async operation finishes in the background, its callback is pushed into a Task Queue.
+3. The Event Loop: The event Loop use to check if the CallSatck is empty.
+
+So js remains non-blocking by offloading takss to the bowser and executing the results only when the main thread id idle.
+
+##### What are the main advantages of using async/await over raw Promises?
+
+The main advantage is readability.Async/await allows us to write asynchronous code that looks like synchronous code.
+
+And there are three main benefits:
+
+1. Cleaner code: with async/await we don't need to chain multiple `.then()` , avoiding nesting codes that makes the code linear and easier to understand.
+2. Error handling: It's convenient to use `try...catch` blocks to handle errors. This is much more intuitive than using `.catch()`.
+3. Complex logic: Handling asynchronous operations inside loops (like `for...of`) is straightforward with await, but very complex with raw Promises.
+
+##### How do you handle multiple asynchronous requests at the same time?
+
+It depends on whether the requests are dependent on each other or independent.
+
+- Independent request: 
+
+  I usually use `Promise.all()` which accepts an array of Promises and runs them concurrently. However, as `Promise.all()` fails immediately if one request fails, so if I need to handle partial successes I prefer using `Promise.allSettled()`. It waits for all requests to finish, regardless of success or failure.
+
+- Dependent request:
+
+  If the second request needs data from the previous one, I have to execute them sequentially using `await`
+
+#####  What is the purpose of the HTTP OPTIONS method?
+
+Options is a Http method for CROS Preflight Request.
+
+It's purpose is to check with the server if the actual request is safe to send.If the server responds with the correct `Access-Control-Allow-` headers, the browser proceeds with the real request. If not, the request is blocked.
 
