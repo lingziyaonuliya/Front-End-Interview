@@ -116,3 +116,118 @@ Options is a Http method for CROS Preflight Request.
 
 It's purpose is to check with the server if the actual request is safe to send.If the server responds with the correct `Access-Control-Allow-` headers, the browser proceeds with the real request. If not, the request is blocked.
 
+##### What's the output of the code?
+```
+async function async1() {
+  console.log('async1 start');
+  await async2();
+  console.log('async1 end');
+}
+
+async function async2() {
+  console.log('async2');
+}
+
+console.log('script start');
+
+setTimeout(function() {
+  console.log('setTimeout');
+}, 0);
+
+async1();
+
+new Promise(function(resolve) {
+  console.log('promise1');
+  resolve();
+}).then(function() {
+  console.log('promise2');
+});
+
+console.log('script end');
+```
+`script start -> async1 start -> async2 -> promise1 -> script end -> async1 end -> promise2 -> setTimeout`
+
+```
+console.log(1);
+
+async function fn() {
+    console.log(2);
+    await console.log(3); // 注意这里 await 后面直接跟了一个 console.log
+    console.log(4);
+}
+
+new Promise((resolve) => {
+    console.log(5);
+    resolve();
+    console.log(6);
+}).then(() => {
+    console.log(7);
+});
+
+fn();
+
+console.log(8);
+```
+
+`1 -> 5 -> 6 -> 2 -> 3 -> 8 -> 7 -> 4`
+
+```
+async function async1() {
+  console.log('A');
+  await async2();
+  console.log('B');
+}
+
+async function async2() {
+  console.log('C');
+}
+
+console.log('D');
+
+setTimeout(function() {
+  console.log('E');
+}, 0);
+
+async1();
+
+new Promise(function(resolve) {
+  console.log('F');
+  resolve();
+}).then(function() {
+  console.log('G');
+});
+
+console.log('H');
+```
+
+`D -> A -> C -> F -> H -> B -> G -> E`
+
+```
+console.log('1');
+
+async function async1() {
+  console.log('2');
+  // 注意：这里有第一个 await
+  await console.log('3'); 
+  console.log('4');
+  // 注意：这里有第二个 await
+  await console.log('5');
+  console.log('6');
+}
+
+async1();
+
+console.log('7');
+
+new Promise((resolve) => {
+  console.log('8');
+  resolve();
+}).then(() => {
+  console.log('9');
+});
+
+console.log('10');
+```
+
+`1 -> 2 -> 3 -> 7 -> 8 -> 10 -> 4 -> 5 -> 9 -> 6`
+
