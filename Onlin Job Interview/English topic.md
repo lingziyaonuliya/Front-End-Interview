@@ -54,7 +54,7 @@ Yes, Heavy obfuscation adds dummy code, increasing the bundle size. The browse n
 
 As modern JS engines try to otimize code.Obfuscation makes logic unpredictable, which prevents the engine from optimizing it, causing slower execution.
 
-So, it;s recommended to heavily obfuscate the specific critical parts, not the entire UI library.
+So, it's recommended to heavily obfuscate the specific critical parts, not the entire UI library.
 
 ##### How Tree Shaking works?And how does it relate to magnification?
 
