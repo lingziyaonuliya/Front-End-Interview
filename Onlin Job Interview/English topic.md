@@ -117,7 +117,7 @@ Options is a Http method for CROS Preflight Request.
 It's purpose is to check with the server if the actual request is safe to send.If the server responds with the correct `Access-Control-Allow-` headers, the browser proceeds with the real request. If not, the request is blocked.
 
 ##### What's the output of the code?
-```
+```javascript
 async function async1() {
   console.log('async1 start');
   await async2();
@@ -147,7 +147,7 @@ console.log('script end');
 ```
 `script start -> async1 start -> async2 -> promise1 -> script end -> async1 end -> promise2 -> setTimeout`
 
-```
+```javascript
 console.log(1);
 
 async function fn() {
@@ -171,7 +171,7 @@ console.log(8);
 
 `1 -> 5 -> 6 -> 2 -> 3 -> 8 -> 7 -> 4`
 
-```
+```javascript
 async function async1() {
   console.log('A');
   await async2();
@@ -202,7 +202,7 @@ console.log('H');
 
 `D -> A -> C -> F -> H -> B -> G -> E`
 
-```
+```javascript
 console.log('1');
 
 async function async1() {
