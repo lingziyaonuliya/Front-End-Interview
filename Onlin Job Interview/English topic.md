@@ -231,3 +231,62 @@ console.log('10');
 
 `1 -> 2 -> 3 -> 7 -> 8 -> 10 -> 4 -> 5 -> 9 -> 6`
 
+##### Could you tell me what's the difference between ISR and SSR?
+
+- SSR(Server-side-rendering) it generates the HTML on every single request, as server processing the data so it has slower TTFB and the server load is high.
+- ISR(Incremental Static Regeneration) it's a hybrid of SSG and SSR, it generates a static page at built time and self-updates in th background after a specific time. As it served from CDN so it has lower server cost,but users might see stale data for a short period until th background revalidation completes.
+
+##### How do you handle user authentication in SSR? How do you prevent 'Cookie' issues during server-side requests?
+
+The code of SSR is executed on server, so it doesn't has `localStorage`.And we use cookie to do the authentication, Cookies are automatically sent by the browser to the server with every HTTP request in the headers. 
+
+##### Could you tell me what's the difference between CSR and SSR?
+
+- CSR (Client-Side-Rendering):
+
+  The browser executes the JS sent by the server to fetch data and render the entire page.
+
+  Once loaded, switching pages is instant because no full-page refresh is needed, and it has poor LCP?/FCP cause loading bundle is costly.
+
+  Thus, CSR is best for scenario  like Dashboards, Admin portals, or SaaS tools where SEO is not a priority and interactivity is complex.
+
+- SSR (Server-Side-Rendering):
+
+  The server fetches data and pre-renders full page on every request. The browser receives a complete document and candispaly immediately.
+
+  It has better LCP, but the server must wait for data fetching and rendering before sending anything, so it has a TTFB bottleneck.
+
+  So it's best for E-commerce, New sites, Landing page where SEO and FCP are critical.
+
+##### What is SSG and how does it differ from SSR?
+
+SSG (Static Site Generation) is the process of generating the full HTML at build time.
+
+- So SSG is rendered once at buid time while SSR is rendered at every request time
+- SSG hands files by CDN so it has fast TTFB while SSR is more slower because the server must work first
+- SSG doesn't need server running which no server cost
+- SSG fetch data only once so the data freshness is stale but SSR is always real-time updated
+
+So if the content is the same for every user and doesn't change always, it's better to choose SSG. And if the content is unique to the users or must be updated instantly, it's more better to use SSR.
+
+##### Why hydration is expensive?
+
+1. When the browser receives the server-rendered HTML, it display it immediately.However, React still has to re-run the entire application's logic in the browser.
+2. To  hydrate successfully, the client needs the exact same data the server used.So we're essentially sending the data twice which increases the total byte size sent over the write.
+3. React is extremely paranoid during hydration.It checks every single attribute and text node to ensure the Server HTML matches the Client output.
+
+To sum up, hydration is expensive primarily because it's a CPU-intensive task that blocks the main thread. It requires the browser to recreate the component tree and reconcile it with the existing DOM.
+
+#####  Can you explain the concept of streaming SSR and how it improves user experience?
+
+In the traditional SSR model. the server follows a ''all-or-nothing'' cycle: fetch data -> render the page -> send the page to browser
+
+If one API is slower and takes more time to on call, the entire page will be delayed event if the rest of page was ready. And streaming SSR is designed to breaks the cycle.
+
+With streaming SSR, server breaks the HTML into chunks.Once a component's data is ready, the server sends the piece of HTML over the same HTTP connection
+
+With these steps, streaming SSR brings lower TTFB, since the server doesn't wait for data to start sending the response, the browser receives the first byte almost instantly.
+
+As users can see the layouts and navigation immediately, this progressive rending giving  the user a good visual confirmation.
+
+Also, the hydration can de started once the parts of the page arrived, it improved TTI.
