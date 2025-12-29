@@ -290,3 +290,51 @@ With these steps, streaming SSR brings lower TTFB, since the server doesn't wait
 As users can see the layouts and navigation immediately, this progressive rending giving  the user a good visual confirmation.
 
 Also, the hydration can de started once the parts of the page arrived, it improved TTI.
+
+##### Can you explain how a browser renders a web page?
+
+When the browser receives the HTML, it follows the rendering path:
+
+1. First, it parses the HTML to build the DOM tree and CSS to CSSOM tree
+2. It combines these two into the Render tree.
+3. The browser calculates the exact position and size of each node.It's the geometry calculation step.
+4. The browser fills in pixels.
+5. Finally, the browser separates elements into layers and composites them on the screen.
+
+##### Why is CSS considered a render blocking resource?
+
+CSS is render-blocking because the browser refuses to paint any content until it has built the CSSOM. So if there is a CSS file still downloading above the `script`, the browser  pauses JavaScript execution until that  CSS is finished.
+
+Try to fix the problem, it's recommend to use  inline style in `head` or use media queries with `media="print"`
+
+##### What is the difference between Repaint and Reflow? Which one costs more?
+
+Reflow happens when we change the layout of the page-like changing `width`, `height` or the position of an element. The browser has to recalculate the geometry of that element and often its neighbors.
+
+Repaint happens when we change the lock of an element without changing its size or position. The browser skips the layout step and jumps straight to painting pixels.
+
+Reflow always triggers a repaint while repaint doesn't trigger a reflow, so reflow costs more, it has more expensive operation.
+
+To avoid both, it's better to use properties that trigger composite only, like `transform` and `opcaity`.
+
+##### What is forced synchronous layout? And why is it bad for performance?
+
+Forced synchronous layout occurs when JavaScript reads a geometric property immediately after writing a style change, forcing the browser to calculate the layout instantly.
+
+- It defrosts the browser's lazy batching system.
+- If the layout calculations are heat, it locks up the main thread.
+- If the calculations take too long, the browser missed the fream deadline, causing visible stuttering.
+
+##### Explain the concept of Composite in browser rendering, how does it help with performance?
+
+Composite is the final step in the rendering pipeline.After the browser has calculated the layout and painted all elements, it separates certain elements into Layers.
+
+- Compositing makes browser skip the layout and paint stages entirely.
+- The 'compositor Thread' is independent with the main thread, so the block of the main thread won't affect the animations running.
+
+##### What is the difference between DOMContentLoaded and load events?
+
+- `DOMContentLoaded` triggered on the documnet object and after the browser finished parsing the HTML and the DOM nodes
+- `load` triggered on window object after the entire page has been fully loaded
+
+For initializing analytics or UI logic, it's good to use `DOMContentLoaded`. waiting for `load` is bad for user experience.
