@@ -338,3 +338,19 @@ Composite is the final step in the rendering pipeline.After the browser has calc
 - `load` triggered on window object after the entire page has been fully loaded
 
 For initializing analytics or UI logic, it's good to use `DOMContentLoaded`. waiting for `load` is bad for user experience.
+
+##### Why do we need to upgrade from Http/1.1 to Http/2?
+
+Here are the 3 main reasons for the upgrade:
+
+1. Http/1.1 processes requests one by one. If one large image takes a long time to load, all the other small files behind it have to wait.It blocks line. The head-of-line blocking
+2. Http/1.1 is a text protocol. It's inefficient for browser to parse.Also every request sends the same massive Headers repeatedly 
+3. As browsers limit to 6 connections per domain.
+
+##### What is the core difference in Http/2 compares to Http/1.1?
+
+The core difference lies in the format of the data being transmitted.
+
+Http/1.1 sends data as text format while Http/2 sends data as binary frames.
+
+Http/2 turns text into a stream of 0s and 1s before sending it. It slices the message into tiny, manageable pieces called Frames.Computers parse binary data incredibly fast.More importantly, as the data is chopped into frames they can be interleaved on the wire, which enables Multiplexing.
