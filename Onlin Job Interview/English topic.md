@@ -354,3 +354,34 @@ The core difference lies in the format of the data being transmitted.
 Http/1.1 sends data as text format while Http/2 sends data as binary frames.
 
 Http/2 turns text into a stream of 0s and 1s before sending it. It slices the message into tiny, manageable pieces called Frames.Computers parse binary data incredibly fast.More importantly, as the data is chopped into frames they can be interleaved on the wire, which enables Multiplexing.
+
+##### We know HTTP/2 introduced multiplexing to solve application-level blocking, so why did HTTP/3 move to QUIC  over UDP? 
+
+Since TCP can't be changed, so HTTP/2 still has the Head-of-Line blocking.So HTTP/3 no longer uses TCP, but is based on UDP.
+
+However, UDP protocol itself is unreliable so there is a new protocol called QUIC on top of UDP.
+
+And QUIC re-implements all the advantages of TCP but built on top of UDP.
+
+##### What was still “broken” in HTTP/2?
+
+The biggest problem with HTTP/2 is **TCP Head-of-Line Blocking**. Since it uses a single TCP connection, if one packet is lost, the operating system pauses the entire connection to wait for it. All streams get blocked.
+##### How does HTTP/3 improve the connection setup time?
+
+HTTP/3 is faster because it combines the transport handshake (TCP) and the security handshake (TLS) into a single step.
+
+In Http/2 there are two step verification: TCP: 1 round trip, TLS: 1-2 round trips, which means we have to wait 2 or 3 round trips before sending real data.
+
+And Http/3 only need one step verification cause QUIC has encryption built-in , it sends connection request and the encryption at the exact time.
+
+##### What is 0-RTT?
+
+0-RTT stands for Zero Round Trip Time, which means the browser can skip the handshake. It sends real data inside the first packet it sends to the server.
+
+#####  Are there any downsides to using UDP at HTTP/3?
+
+Yes, even though HTTP/3 is faster, it comes with high cost.
+
+1. The biggest downside is **CPU Overhead**. Because QUIC runs in user-space and not kernel-space, it is not as optimized as TCP yet, requiring more server power.
+2. Many firewalls block UDP traffic because they think it is an attack or spam. This is called **UDP throttling** or **Middlebox interference**
+3. Observability is harder. Because QUIC encrypts almost everything, standard network tools often can't see the details of the traffic, making debugging difficult.
