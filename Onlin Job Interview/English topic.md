@@ -392,7 +392,7 @@ My go-to method is remote debugging via USB.
 
 Firstly, I would use the device toolbar in chorome to simulate the screen size.
 
-And if the bug cannot be fixed bu this way, we can connect the mobile phone to  computer via the USE cable, if it is Android phone, and open `chrome://inspect`on the desktop browser.So that we can use the full power of desktop DevTool of the real device and know what is exactly happened.
+And if the bug cannot be fixed bu this way, we can connect the mobile phone to  computer via the USB cable, if it is Android phone, and open `chrome://inspect`on the desktop browser.So that we can use the full power of desktop DevTool of the real device and know what is exactly happened.
 
 And if we cannot connect vias USB, I choose to inject a vConsole tool into the code to open a mini-version of DevTool inside the app.
 
