@@ -385,3 +385,56 @@ Yes, even though HTTP/3 is faster, it comes with high cost.
 1. The biggest downside is **CPU Overhead**. Because QUIC runs in user-space and not kernel-space, it is not as optimized as TCP yet, requiring more server power.
 2. Many firewalls block UDP traffic because they think it is an attack or spam. This is called **UDP throttling** or **Middlebox interference**
 3. Observability is harder. Because QUIC encrypts almost everything, standard network tools often can't see the details of the traffic, making debugging difficult.
+
+##### What's your go to method for debugging a weird UI bug that only happens on mobile?
+
+My go-to method is remote debugging via USB.
+
+Firstly, I would use the device toolbar in chorome to simulate the screen size.
+
+And if the bug cannot be fixed bu this way, we can connect the mobile phone to  computer via the USE cable, if it is Android phone, and open `chrome://inspect`on the desktop browser.So that we can use the full power of desktop DevTool of the real device and know what is exactly happened.
+
+And if we cannot connect vias USB, I choose to inject a vConsole tool into the code to open a mini-version of DevTool inside the app.
+
+##### How do you trace where a specific network request is coming from in the code?
+
+I go to the network tab and look at the column "initiator".
+
+First, find the request in the list.
+
+Hover the mouse over the filename in the initiator column.
+
+So you can see the call stack in the popup.
+
+And click the link, so you can see the line of the code currently executed in source panel.
+
+##### What is black box script?
+
+It's also called "ignore list".And it is a feature in devTools that tells the debugger to skip certain files.
+
+Without this feature, if we click 'skip into', the debugger might jump into thousands of lines code, which is confusing and a waste of time.
+
+##### How do you inspect an element that disappears the moment you click away like a tool tip or a drop down?
+
+So I usually consider the "force state" way,
+
+If the element is controlled by CSS, I force the browser to keep it active.
+
+If the element is controlled by Js, I use the pause shortcut.
+
+Open the sources panel, trigger the tooltip with mouse, and immediately press F8, pauses script exection and freezes the entire DOM.
+
+##### How do you check if your Web app is leaking memory?
+
+First, I do a quick check using the Performance Monitor. It provides a real-time view of memory usage.
+
+If I see the JS Heap size climbing constantly without dropping, there must be a problem.
+
+And I will go to the Memory tab and take heap snapshots.Compare the state 'before' and 'after' a user interaction.
+
+##### How do you debug a function that's been called way too many times, like on Scroll?
+
+For this excessive event firing, I try `console.log()` within the event, if it is nit helpful. 
+
+I will use the performance tab, use 'record and reload' feature, analyze the main thread timeline.So if there is a block of yellow or purple bars in the board, it means the function is firing too often.
+Then I click one of the bars to see exactly which function is consuming the CPU time.
