@@ -434,7 +434,7 @@ And I will go to the Memory tab and take heap snapshots.Compare the state 'befor
 
 ##### How do you debug a function that's been called way too many times, like on Scroll?
 
-For this excessive event firing, I try `console.log()` within the event, if it is nit helpful. 
+For this excessive event firing, I try `console.log()` within the event, if it is not helpful. 
 
 I will use the performance tab, use 'record and reload' feature, analyze the main thread timeline.So if there is a block of yellow or purple bars in the board, it means the function is firing too often.
 Then I click one of the bars to see exactly which function is consuming the CPU time.
