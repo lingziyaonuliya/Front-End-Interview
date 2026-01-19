@@ -433,6 +433,73 @@ If I see the JS Heap size climbing constantly without dropping, there must be a 
 And I will go to the Memory tab and take heap snapshots.Compare the state 'before' and 'after' a user interaction.
 
 ##### How do you debug a function that's been called way too many times, like on Scroll?
+For this excessive event firing, I try `console.log()` within the event, if it is helpful. 
+
+I will use the performance tab, use record feature, analyze the main thread timeline.So if there is a block of yellow or purple bars in the board, it means the function is firing too often.
+Then I click one of the bars to see exactly which function is consuming the CPU time.
+
+##### Can you explain the 'Stale Closure' problem in React Hooks? How is it different from how Class components handle state?
+
+A **Stale Closure** occurs when a function inside a component—like a `useEffect` or an event handler—captures variables from a previous render and holds onto them, failing to see updates.
+
+This typically happens when we use an empty dependency array in `useEffect`.The effect runs only ou mount,creating a closure over the state values at that specific moment. Even if the component re-renders with new state, the effect is still referencing the cold 'snapshot' of the variables.
+
+To solve this:
+
+1. We can add the variable to the dependency array.This forces the effect to re-run and recapture the new scope.
+2. For `useState` we can use the functional updates form.This bypasses the closure problem entirely because it asks React for the latest state value at the time of execution, rather than relying on the variable in the local scope.
+
+##### Why use hooks? Is class such bad?
+
+The main reason to use hooks is reusing stateful logic.With classes, we reied on patterns like HOCs or render props, which usually  led to 'wrapper hell'. Hooks allow us to extract and share logic cleanly via custom hooks without changing the component hierarchy.
+
+In classes, related logic is split apart by lifecycle methods, while unrelated logic is often mixed together.
+
+To sum up, hooks allow us to reuse logic easily, organsize code by feature rather than lifecycle, and avoid the complexity of the `this` keyword.
+
+##### How does useEffect replace multiple lifeCycle methods?
+
+It replaces by tranverting the mindset from 'lefecycle moments' to 'synchronyization'.
+
+If we passes an empty array it runs only once, like `componentDidMount` 
+
+If we add variables to the dependency array, it runs whatever that data changes, replacing `componentDidUpdate`
+
+By returning a function from the effect, we define cleanup logic, which replaces `componentWillUnmount`
+
+##### What is the main benefit of custom hooks?
+
+The main benfit is exacting bussiness logic out of the UI. Our component only cares about rendering. The custom hook handles the logic.
+
+The custom hooks can share stateful logic, not state itself. Different components have their own independent state. Allows us to achieve a clear separation of concerns.
+
+Custom hooks don't add unnecessary nesting to the DOM tree, they let us compose behaviors nicely and make the code much more readable and testable.
+
+##### Why do we need useCallback? When not to use it?
+
+We need `useCallback` to maintain referential equalality to prevent unnecessary re-renders in child component.
+
+In React compoent, every time the component re-renders, all functions inside it are re-created.
+
+`useCallback`solves this by giving us the same memory address across multiple renders.
+
+Don't wrap every function in `useCallback`, only use if we are passing the function to a `React.memo` child or using it in a dependency array.
+
+##### What is the rules of hooks?
+
+1. Only call hooks at the top level of the React function, and cannot call hooks inside loops, conditions, or nested functions.
+2. Only call hooks from React function components or custom hooks.
+
+##### How do class components handle errors differently than hooks?
+
+Classes have special methods called Error Boundaries: `componentDidCatch` and `getDerivedStateFromError`.If a child component crashed, the class component catches the errors and shows a fallback UI instead of crashing the whole browser tab.
+
+And there is no hook equivalent for error boudaries.So we need at least one class component at the top of level to handle these errors safely.
+
+##### When should I still choose a class component over a function component?
+
+1. The feature that hooks cannot do yet is error boundaries, so the scenario we need to catch errors I will choose class component.
+2. If I'm working on a massive, complex legacy component that is already written as a class, I will generally keep it as a class.
 
 For this excessive event firing, I try `console.log()` within the event, if it is not helpful. 
 
