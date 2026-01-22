@@ -501,6 +501,42 @@ And there is no hook equivalent for error boudaries.So we need at least one clas
 1. The feature that hooks cannot do yet is error boundaries, so the scenario we need to catch errors I will choose class component.
 2. If I'm working on a massive, complex legacy component that is already written as a class, I will generally keep it as a class.
 
+##### In your daily work, what is the most common scenario where you intentionally use Closures?
+
+In my daily work, the most common scenario is **debounding** or **throttling**.
+
+And in React, `useState` and `useCallback` are essentially built on closures, and when I forgot to add adeptdency to the array, I get a 'stale closure'.
+
+As JavaScript doesn't have private variables in classes, so I use closures to emulate private state.
+
+##### Can you give an example of an  accidental global variable causing a memory leak?
+
+In JavaScript if a variable is assigned without `let` `const` `var`, the engine autumatically creates it as a property of the global object, GC cannot clean it up, thus cause a memory leak.
+
+##### Why do we need to clear intervals or event listeners in single page applications?
+
+If we don't clear an interval or a global event listener, they keep the references to the component's variables. And the garbage collector won't clean them up because of the references and that leads to detached DOM trees.
+
+##### How does Javascript know when to free up memory?
+
+JavaScript determines when to free memory based on Reachability.
+
+It starts from the Root, like the `window` object or the exection stack and traverses down. If an object is not reachable from the roots, it is considered garbage.
+
+And when we create a new object and the memory space is full, the engine triggers a cleanup to clear out the dead objects and make room for the new ones.
+
+##### So what is a detached dom node and why is it bad?
+
+A detached DOM is an HTML element that has been removed from the document, but is still being kept alive in the memory.
+
+It is bad bacause if I still keep a reference to a deleted element, the Garbage collector cannot free the element.
+
+##### How do you check for memory leaks in chrome devtools?
+
+1. First,I will use **Performance** tab to see if there is a memory leak. If the values go up, GC runs, but values never return to the original baseline, it shows there must have memory leak.
+2. Then open **Memory** tab, take a snapshot for the baseline and perform the user actions multiple times, force garbage collector and take the final snapshot.
+3. Switch to the **Comparison View**, check if there is a detached elements.
+
 For this excessive event firing, I try `console.log()` within the event, if it is not helpful. 
 
 I will use the performance tab, use 'record and reload' feature, analyze the main thread timeline.So if there is a block of yellow or purple bars in the board, it means the function is firing too often.
