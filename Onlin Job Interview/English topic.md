@@ -541,3 +541,20 @@ For this excessive event firing, I try `console.log()` within the event, if it i
 
 I will use the performance tab, use 'record and reload' feature, analyze the main thread timeline.So if there is a block of yellow or purple bars in the board, it means the function is firing too often.
 Then I click one of the bars to see exactly which function is consuming the CPU time.
+
+##### What happens if two closures share the same scope? 
+
+In JavaScript, a closure is a function bundled with a link to its lexical environment. So if there are two fucntions inside the same parent function call, they both point to the same lexical environment instance.
+
+So if the one closure modified a variable, the other closure sees the change immediately.Because they share the live data.
+
+##### What's the difference between target and currentTarget?
+
+`event.target`: The element that actually triggered the event. It won't change during the bubbling parse.
+
+`event.currentTarget`: The element that is listening for the event. It changes during the bubbling parse.
+
+##### What's the reason to use event delegation than event listener?
+
+1. event delegation has better performance, without delegation we need to add multiple event listener for every object. With delegation we can only add one single event listener to the parent node.
+2. Delegation is better in dynamic content, with delegation, content changes(add, delete) works automatically to the children.We don't need to do any extra setup for new elements.
