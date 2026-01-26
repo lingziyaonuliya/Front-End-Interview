@@ -558,3 +558,9 @@ So if the one closure modified a variable, the other closure sees the change imm
 
 1. event delegation has better performance, without delegation we need to add multiple event listener for every object. With delegation we can only add one single event listener to the parent node.
 2. Delegation is better in dynamic content, with delegation, content changes(add, delete) works automatically to the children.We don't need to do any extra setup for new elements.
+
+##### Could you explain the key differences between how Vue 3 (Composition API) and React (Hooks) handle component reactivity and side effects?
+The fundamental difference lies in the Mental Model of how the frameworks handle updates.
+React Hooks are execution-order dependent because React treats hooks as a linked list or an array internally. During each re-render, React steps through that list. If you break the order (via a condition or loop), the pointer goes out of sync, leading to state bugs. This is why we have the 'Rules of Hooks.
+
+Vue 3’s Composition API, however, uses a 'Setup' pattern. The setup() function (or <script setup>) runs only once during component initialization. Because Vue uses a proxy-based reactivity system (via Ref and Reactive), it 'subscribes' to dependencies automatically. Once the setup is done, Vue knows exactly which state affects which part of the template, regardless of the order in which those refs were created.
