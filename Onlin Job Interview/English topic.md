@@ -56,7 +56,7 @@ As modern JS engines try to otimize code.Obfuscation makes logic unpredictable, 
 
 So, it's recommended to heavily obfuscate the specific critical parts, not the entire UI library.
 
-##### How Tree Shaking works?And how does it relate to magnification?
+##### How Tree Shaking works?And how does it relate to minification?
 
 Tree Shaking is a technique we use to remove **dead code**.It analyzes the `import` and `export` statements in code to detect which modules are never used, and removes them from the final bundle.
 
