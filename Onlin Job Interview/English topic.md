@@ -1,18 +1,22 @@
-##### What is front end routine and why is it essential for spa?
+1. Client-Side Routing & SPA Architecture
+#### What is front-end routing and why is it essential for SPAs?
+Front-end routing (or client-side routing) is a technique where the browser manages navigation and UI updates without requesting a new HTML document from the server.
 
-**Front-end routing** (also known as client-side routing) is a technique used in modern web development where the browser—not the server—controls what content is displayed when a user navigates to a new URL.
+In a Single Page Application (SPA), which typically serves a single index.html, front-end routing is crucial for:
 
-A Single Page Application (SPA) literally has only one HTML file (usually `index.html`). Without front-end routing, an SPA would be stuck on one URL, or it would break standard browser behaviors.
+Stateful Navigation: Allowing users to use the browser's "Back" and "Forward" buttons seamlessly.
+
+Deep Linking: Enabling specific UI states to be bookmarkable and shareable via unique URLs.
 
 ##### What is the difference between Hash Mode and History Mode?
 
 The main difference between hash mode and history mode is how the URL looks and how the routing is handled under the hood.
 
-Hash mode: uses the hash symbol (#) in the url. It works by listening for the `hashChange` event. The browser naturally ignores everything after the hash when sending requests to the server, Since the hash mode urls are not sent to the server, no special server configurationtion is required.
+Hash Mode: Utilizes the # symbol in the URL and listens for the hashchange event. Since the hash portion is never sent to the server, it requires zero server-side configuration.
 
-History mode: on the other hand, uses the HTML 5 history API to create a "clean" standard url path. When routes switched, history mode calls pushState() or replaceState to add or replace a route info into the browser history stack. So users can manage navigation without reloading the page.
+History Mode: Leverages the HTML5 History API (pushState and replaceState) to create "clean" URL paths.
 
-To sum up, history mode uses real urls paths, which has better SEO but requires server configuration support.Hash mode uses hash to simulate routing, offering better compstibility and eliminating the need for server configuration.There is no better one, choose them depends on your actual needs.
+The Trade-off: It offers better SEO and professional URLs but requires a server-side fallback to index.html to prevent 404 errors upon page refresh.
 
 #####  How the History API Works (pushState & replaceState)
 
@@ -40,13 +44,15 @@ Route state: pass complex objects through the router's history state without sho
 
 **Batching** means combining multiple small requests into **one single network call**.
 
+2. Build Optimization: Minification & Obfuscation
+
 ##### Talk about the difference between Minification and Obfuscation
 
-Minification is mainly about performance.It removes comments, spaces, and breaks to make teh file size smaller.
+Minification is a performance optimization. It reduces file size by removing whitespace, comments, and shortening variable names (mangling) without changing the code's logic.
 
-Obfuscation is mainly about security and code protection.It transforms the code so that is hard for others to read or reverse-engineer.
+Obfuscation is a security measure. It transforms code into a complex, cryptic version to hinder reverse-engineering.
 
-In my workflow, I use webpack for minification.Webpack uses the TerserPlugin for minification, Vite uses esbulid,which is faster.
+Performance Impact: Excessive obfuscation can increase bundle size and complicate the Abstract Syntax Tree (AST) parsing, potentially preventing the JS engine from performing JIT (Just-In-Time) optimizations.
 
 ##### Does obfuscation affect performance?
 
@@ -56,7 +62,7 @@ As modern JS engines try to otimize code.Obfuscation makes logic unpredictable, 
 
 So, it's recommended to heavily obfuscate the specific critical parts, not the entire UI library.
 
-##### How Tree Shaking works?And how does it relate to minification?
+##### How Tree Shaking works? And how does it relate to minification?
 
 Tree Shaking is a technique we use to remove **dead code**.It analyzes the `import` and `export` statements in code to detect which modules are never used, and removes them from the final bundle.
 
@@ -440,9 +446,7 @@ Then I click one of the bars to see exactly which function is consuming the CPU 
 
 ##### Can you explain the 'Stale Closure' problem in React Hooks? How is it different from how Class components handle state?
 
-A **Stale Closure** occurs when a function inside a component—like a `useEffect` or an event handler—captures variables from a previous render and holds onto them, failing to see updates.
-
-This typically happens when we use an empty dependency array in `useEffect`.The effect runs only ou mount,creating a closure over the state values at that specific moment. Even if the component re-renders with new state, the effect is still referencing the cold 'snapshot' of the variables.
+A stale closure occurs when a function (e.g., inside useEffect) captures state variables from a specific render cycle. If the dependency array is empty ([]), the function remains bound to those "frozen" initial values, even after the component re-renders with new state.
 
 To solve this:
 
@@ -561,6 +565,6 @@ So if the one closure modified a variable, the other closure sees the change imm
 
 ##### Could you explain the key differences between how Vue 3 (Composition API) and React (Hooks) handle component reactivity and side effects?
 The fundamental difference lies in the Mental Model of how the frameworks handle updates.
-React Hooks are execution-order dependent because React treats hooks as a linked list or an array internally. During each re-render, React steps through that list. If you break the order (via a condition or loop), the pointer goes out of sync, leading to state bugs. This is why we have the 'Rules of Hooks.
+React Hooks rely on a deterministic call order. Internally, hooks are stored in a linked list; breaking this order (via conditionals or loops) causes a state mismatch.
 
-Vue 3’s Composition API, however, uses a 'Setup' pattern. The setup() function (or <script setup>) runs only once during component initialization. Because Vue uses a proxy-based reactivity system (via Ref and Reactive), it 'subscribes' to dependencies automatically. Once the setup is done, Vue knows exactly which state affects which part of the template, regardless of the order in which those refs were created.
+Vue Composition API uses a Proxy-based reactivity system. The setup() function runs only once during initialization to subscribe to dependencies, making it more flexible and immune to the "rules of hooks" regarding execution order.
