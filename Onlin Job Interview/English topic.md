@@ -568,3 +568,56 @@ The fundamental difference lies in the Mental Model of how the frameworks handle
 React Hooks rely on a deterministic call order. Internally, hooks are stored in a linked list; breaking this order (via conditionals or loops) causes a state mismatch.
 
 Vue Composition API uses a Proxy-based reactivity system. The setup() function runs only once during initialization to subscribe to dependencies, making it more flexible and immune to the "rules of hooks" regarding execution order.
+
+##### What is prototype chain?
+
+The Prototype Chain is the fundamental mechanism JavaScript uses for inheritance and sharing properties or methods between objects.
+
+Every object in JavaScript has h hidden link to another object called its **Prototype**. When we try to access a property or method on an object:
+
+1. Js checks if the property exists on the object itself.
+2. If not found, it followa the link to the object's prototype.
+3. If still not found, it goes to that object's prototype.
+4. This continues untill it hits `Object.prototype`, which points to `null`.If it's not found there, the result is `undefined`.
+
+##### What is the difference between __prop__ and proptype? 
+
+ `prototype`: A prototype of functions only.It is the "blueprint" object that will become the prototype for any instances created using the `new` keyword.
+
+`__proto__`: The actual link on an instance/Object. It points to the parent object in the chain.
+
+`constructor`: Property usually found on the prototype that points back to the function that created the instance.
+
+##### What happens if I add a method to array.prototype? Is that a good idea?
+
+If we add a method to `Array.prototype`, it will immediately become available to **every single array** in the entire application.
+
+While this demonstrates the power of JavaScript, it is generally considered a **bad idea** and is known in the industry as **"Monkey Patching"** or "Polluting the Prototype."
+
+##### How does the super this keyword work in es6 classes?
+
+In ES6 classes, the most important rule is:
+
+If we define a `constructor` in a subclass, we **must** call `super()` inside it before accessing `this`.
+
+Because in ES6 inheritance, the parent class creates the instance (the `this` object) and binds the basic properties. The child class then modifies that existing instance. 
+
+In a derived class constructor, `super()` calls the parent constructor.
+
+When using `super.method()`, the `this` context remains bound to the current instance (the child), not the parent prototype.
+
+##### What is the downside of a long prototype chain?
+
+The primary downside of a long prototype chain is **Performance Degradation** during property access, though there are also significant issues with **Debugging Complexity**.
+
+Slower lookups, especially for non-existent properties.
+
+In a long chain, it becomes difficult to know *where* a property is defined.
+
+When you inspect an object in the browser console (Chrome DevTools), a deep prototype chain results in a nested mess.
+
+While prototypes save memory by sharing methods, a very long chain often implies a complex hierarchy of objects that are being kept alive. If the leaf node (the instance) is alive, it keeps the entire chain of prototype objects in memory, preventing garbage collection of those parent objects.
+
+##### What is the prototype delegation?
+
+Prototype Delegation is a **runtime look-up strategy**. It allows objects to share behavior without bloating memory by maintaining a reference to a common ancestor, rather than duplicating its logic.
