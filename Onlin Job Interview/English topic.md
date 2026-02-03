@@ -621,3 +621,66 @@ While prototypes save memory by sharing methods, a very long chain often implies
 ##### What is the prototype delegation?
 
 Prototype Delegation is a **runtime look-up strategy**. It allows objects to share behavior without bloating memory by maintaining a reference to a common ancestor, rather than duplicating its logic.
+
+##### How is fetch priority different from lazy loading?
+
+Lazy loading delays the start of loading which helps to save bandwidth, reduce intial load size. While fetch priority changes the rank in the download queue which can optimize critical rendering path(LCP).
+
+##### Can I use Fetch Priority on tags?
+
+Yes. Fetch priority works on four specific HTML tags:
+
+1. `<img>`: For images.
+2. `<link>`: For preloading resources.
+3. `<script>`: For external JavaScript files.
+4. `<iframe>`: For embedded content.
+
+##### How do you debug all the or verify that the priority is actually working?
+
+To verify if `fetchpriority` is working, we use the Chrome dev tools network tab.
+
+And by default, the priority column is hidden, we can right-click to show it and check the priority option.
+
+Then, reload the page.There will show a new column 'high', 'low' or 'highest'. So if the priority used during the actual transfer is different with your setting. There may be some issues.
+
+1. First check if there are too many 'high' priority items, if everything is high, nothing is high.
+2. Check if the image is hidden inside a JavaScript file that loads late.Fetch priority can't help if the browser doesn't know the image exists yet.
+3. Check if the browser supports fetch priority api.
+
+##### What is a good use case for fetch priority equals low?
+
+1. The image carousel:
+
+   If the browser tries to download all the iamges at the same time, the compete for bandwidth, and we only want teh first image to load fast, and others to load eventually but not get in the way(Low priority).
+
+2. Thrid-party scripts:
+
+   For some JavaScript files which are heavy but not urgent, they might delay our main thread.So use low priority to stop secoundary resources from stealing bandwidth from critical resources.
+
+##### How does fetchpriority affect script execution order?
+
+The effect depends on the script attribute.
+
+For `async` script, fetch priority makes the execution order forward.Since `async` script run immediately after downloading, set a high priority means it will likely finish and run before others. It changes the race result.
+
+And for `defer` script, the execution order won't be changed, because the order is fixed in the HTML, fetch priority only the file is downloaded earlier, but doesn't change the suquence.
+
+##### Is there any risk in setting an api call to a high priority?
+
+Yes, absolutely.
+
+If we set the large API data fetch to high, it consums bandwidth that should be used for the CSS or the LCP image.
+
+And if we mark too many things as 'high', the 'low' items might get pushed back too far.
+
+Plus, if we are aggressive with priorities, some network intermediaries might buffer or re-order packets in unexpected ways, potentially causing Head-of-Line Blocking.
+
+##### What is the default priority for an image usually?
+
+By default, the priority is set to 'auto'. The browser use heuristics to decide. Usually, the image starts with 'low' priority, and if the browser calculates that image is in the viewport, it upgrades the priority to high. If the image is off-screen, it stays low.
+
+##### How does fetch priority effect LCP?
+
+As default, the images are 'low' priority, This causes a delay for the LCP element, and if we set 'high' priority to the LCP images, the browser starts downloading the images immediately, even before it finishes processing other render-blocking resources.
+
+This reduces the Resource Load Time, which gets faster LCP.
