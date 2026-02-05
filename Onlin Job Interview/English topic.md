@@ -680,7 +680,53 @@ Plus, if we are aggressive with priorities, some network intermediaries might bu
 By default, the priority is set to 'auto'. The browser use heuristics to decide. Usually, the image starts with 'low' priority, and if the browser calculates that image is in the viewport, it upgrades the priority to high. If the image is off-screen, it stays low.
 
 ##### How does fetch priority effect LCP?
+As default, the images are 'low' priority, This causes a delay for the LCP element, and if we set 'high' priority to the LCP images, the browser starts downloading the images immediately, even before it finishes processing other render-blocking resources.
 
+This reduces the Resource Load Time, which gets faster LCP.
+
+##### Can you explain the critical rendering path in simple terms? 
+
+CRP is the sequence of steps the browser takes to convert HTML, CSS, and JavaScript into actual pixels on the screen. It involves building the DOM and CSSOM trees, combining them into a Render Tree, calculating layout, and finally Painting the pixels.
+
+##### What are render blocking resources?
+
+Render-blocking resources are files that forces the browser to pause the rendering process.
+
+By default, CSS is treated as a render-blocking resource. Also, JavaScript is parser-blocking.
+
+##### How do you optimize Css delivery to avoid blocking rendering?
+
+1. We can put the styles in the HTML `<head>` instead of putting them in an external file.
+2. Load the non-critical CSS asynchronyously,use `rel='preload'` to tell browser to fetch the file at high priority without blocking rendering.
+
+##### Why do we care about the dom size?
+
+We care about DOM size because it affect the performance.
+
+The bigger DOM size is, the more expensive style calculations and layout. Also cost more higher memory usage.
+
+##### How does font loading affect the critical rendering path?
+
+Fonts don't block the layout of the page, but block the painting of the text.Browsers default to hiding text while waiting for the font file.So font loading can affect CRP in CSSOM building process.
+
+##### How do you identify bottlenecks in the rendering path,
+
+First, I usually use Lighthouse audit in Chrome devTools, if the LCP is red, which shows my critical resources are loading too slowly.Or check TBT, if  it is red which means the JavaScript is too heavy and blocking th main thread.
+
+The next step is to use Performance Tab, use 'screenShot' to see if there are waterfall (network bottlenecks), also check if there is a main thread blocking, look at the long tasks that took > 500ms.
+
+Also, use Rendering Tab can help to check if there is a repaint bottleneck.
+
+##### Does minifying assets really help that much?
+
+Yes, absolutely.
+
+1. Minification can typically reduces file size by 30% to 50%. So the download time is shortten.
+2. Minification reduces the actual amount of code the browser has to read, which reduces the CPU cost.
+
+##### How does Http/2 help with CRP?
+
+HTTP/2 optimizes the Critical Rendering Path primarily through **Multiplexing**, which allows multiple critical resources (CSS/JS) to be downloaded in parallel over a single connection, eliminating the 'waterfall' delay seen in HTTP/1.1. It also uses **Stream Prioritization** to ensure render-blocking resources are delivered before non-critical images.
 As default, the images are 'low' priority, This causes a delay for the LCP element, and if we set 'high' priority to the LCP images, the browser starts downloading the images immediately, even before it finishes processing other render-blocking resources.
 
 This reduces the Resource Load Time, which gets faster LCP.
