@@ -1,15 +1,20 @@
-Foreword 
+## Foreword 
 the CSS box model is a very basic and important concept in front-end development, which determines how the browser calculates the size, inner margin, border and outer margin of elements. In layout, style calculation, and element positioning, the box model directly affects the rendering results. Understanding the box model not only helps to precisely control the size and position of page elements, but also helps us to locate the cause faster when debugging style problems. 
-Composition and Principle of Box Model 
+
+## Composition and Principle of Box Model 
 in CSS, each element is treated as a rectangular box. The core of the box model is to divide the space of the element into four parts, from the inside to the outside, which are the content area (content), the inner margin (padding), the border (border) and the outer margin (margin). 
 The content area is the part used to display the actual content such as text and pictures, and its width and height are determined width and height property determines. Padding is the area of padding between the content and the border that increases the visible size of the element. The border is located outside the inner margin and is used to surround the element content and inner margin. Its thickness will continue to increase the overall size. The outer margin is the spacing between an element and other elements. It does not affect the visible size of the element itself, but it does affect the layout position. 
 The browser calculates the total width and height of an element differently depending on the box model type. In the default standard box model (content-box), width and heightRefers to the size of the content area only, the padding and border are added to the total size. In the alternative box model (border-box), width and height refers to the sum of content, padding, and borders, which makes it easier to control the actual space occupied by elements in complex layouts. 
-Types and switching of Box Models 
+
+## Types and switching of Box Models 
 CSS supports two main box models: the standard box model (content-box) and the alternative box model (border-box). The standard box model is the default mode of the W3C specification, and in most cases the browser will render elements this way. The alternative box model is widely used in some UI frameworks because it can avoid adding additional margins and borders when calculating dimensions, reducing the complexity of layout calculations. 
 Can Pass box-sizing property to switch the box model type. Will box-sizing set content-box when using the standard box model, set border-box when using the alternative box model. Many developers will use box-sizing set border-box for more intuitive control of element dimensions.
-Boundary conditions and considerations 
+
+## Boundary conditions and considerations 
 there are several details that need to be paid attention to when using the box model. First of all, different browsers have historical compatibility problems in rendering, especially when mixing the old version of IE Mode, it may trigger the weird box model (Quirks Mode). At this time width and height will be like border-box includes margins and borders as well. Second, the percentage width and height are calculated the same way under different box models, but the impact of parent element size and content overflow may produce unexpected scroll bars or layout misalignment. Finally, combine in the responsive layout. border-box you can avoid disrupting the overall layout when you increase the padding or border. 
-Interview answer 
+
+## Interview answer 
 the CSS box model is the browser's mechanism for calculating and rendering element sizes and spacing. It treats each element as a rectangular box consisting of a content area, an inner margin, a border, and an outer margin. Under the standard box model, width and height refers only to the size of the content area, while under the alternative box model, they include the size of the padding and border. We can pass box-sizing property toggles between the two modes, generally recommend using border-boxSo that adjusting the padding or border does not change the total size of the element. 
-Summary 
+
+## Summary 
 mastering the CSS box model is the basic ability of front-end layout. It not only affects the size and position of elements on the page, but also directly relates to responsive design, cross-browser compatibility, and the stability of complex UI layouts. Be familiar with the differences between the standard box model and the alternative box model, and use it flexibly. box-sizing can significantly improve the controllability of the layout and development efficiency.
