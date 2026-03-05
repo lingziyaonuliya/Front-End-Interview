@@ -1,0 +1,19 @@
+## Foreword 
+in the layout of a web page, the browser needs a rule to determine the arrangement of elements, the space they occupy, and the relationship with other elements. CSS document Flow (Normal Flow) is the browser in the absence of special positioning or floating intervention, the default layout of elements. Understanding document flow helps you grasp how elements are arranged naturally and how to change it to achieve various layout effects. 
+
+## Principles of Document Flow 
+document flow is the underlying mechanism by which the browser determines the placement of elements during the rendering phase, following the default display characteristics and writing order of HTML elements. Block-level elements occupy an exclusive line in the document flow, arranged from top to bottom, while in-line elements are arranged from left to right in a line, and do not wrap until the line width is insufficient. When the browser calculates the layout, it allocates space for each element according to the box model and handles the overlay of inner and outer margins. 
+Document flow not only determines the arrangement of elements, but also affects the calculation of page height. The height of the parent element is stretched by the child elements in the document flow, because the browser recursively calculates the size and position of all child elements in the flow layout. 
+
+## Out of document flow 
+some layout styles leave elements out of the document flow and no longer affect the arrangement of other elements and the size of the parent element. For example, using float , absolute , fixed or stickyWhen positioned, the element is removed from the document flow. The removed elements no longer occupy the original space, and other elements are rearranged according to the remaining space. 
+Elements that are out of the document flow rely on other rules for positioning. For example, an absolutely positioned element will be positioned relative to the nearest positioned ancestor, while a floating element will try to be as close as possible to the specified direction, but may still have a wrapping effect with some content in the document flow. 
+
+## Boundary conditions and considerations 
+in layouts, it is sometimes necessary to deliberately leave certain elements out of the document flow, such as floating buttons, pop-up layers, or fixed-head navigation, but this can also cause problems with the height of the parent element. In this case, you need to manually clear the float for the parent element or use other layout techniques (such as Flexbox or Grid) to avoid the impact. It should be noted that, sticky although you can combine the advantages of streaming layout and positioning, its work relies on rolling containers and threshold conditions, which may be set in some parent containers. overflow failure. 
+
+## Interview answer 
+the CSS document flow is the browser's default rule for arranging elements when no special positioning or floating is used. Block-level elements occupy a row exclusively from top to bottom, and elements within a row are arranged from left to right in a row and wrap as needed. Elements in the document flow affect and support the height of the parent element, and float , absolute , fixed or stickyWill take the element out of the document flow and no longer occupy the original space. 
+
+## Summary 
+CSS document flow is the basic rule of web page layout, and it helps to understand the arrangement order of elements, space allocation and height calculation. By switching between document flow and out of document flow, you can achieve a variety of layout effects, but you need to pay attention to side effects such as the collapse of the parent element height when you are out of the document flow, and optimize it with modern layout techniques.
