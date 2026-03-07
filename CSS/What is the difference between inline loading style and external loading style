@@ -1,0 +1,20 @@
+## foreword 
+In web development, CSS styles can be introduced in many ways, the most common of which are Inline loading styles (Inline CSS) and External CSS. They differ significantly in terms of where they are written, how they are loaded, performance impact, and maintenance costs. Understanding the difference between the two helps to choose the most appropriate style introduction method according to the actual needs in the project, thus balancing loading speed, maintainability and code structure. 
+
+## Mechanisms for inline loading styles 
+the inline style is directly through the HTML element. style CSS code written by the property, for example <div style="color: red;">. The characteristic of this method is that the style only acts on the current element and does not affect other elements. When the browser parses the HTML, it simultaneously parses the inline style and applies it immediately, with no additional network requests. 
+Inline styles have the advantage of being straightforward and fast to load, making them ideal for quick testing or for applying temporary styles on dynamically generated elements. But its shortcomings are also obvious: it cannot be reused, affects code readability, is difficult to centrally manage, and increases the size of HTML files. In complex projects, a large number of inline styles can cause maintenance difficulties. 
+
+## Mechanisms for Exterior Loading Styles 
+the outreach style is through <link rel="stylesheet" href="styles.css">storing style files separately in.css file, and then the browser initiates an HTTP request to get the style file when it loads the HTML. The advantage of this approach is that the style is centrally managed, reusable, and suitable for the development and maintenance of large projects. Multiple pages can share the same CSS file, reducing duplicate code and overall maintenance costs. 
+The disadvantage of the outreach style is that it requires additional network requests. If the style file is large and does not have cache optimization, it may extend the first screen rendering time. However, this disadvantage can be significantly mitigated by enabling browser caching and HTTP/2 multiplexing. 
+
+## Differences in performance and usage scenarios 
+in terms of performance, inline styles are suitable for inline loading of Critical CSS on the first screen, which can reduce rendering blocking and improve the loading speed of the first screen of the page. The external style is more suitable for loading most common styles because it can be cached, reused, and keeps the HTML code clean. 
+In usage scenarios, inline styles are suitable for temporary styles, small-scale customization, and dynamically generated content; External styles are suitable for stable and reusable global styles, especially in multi-page applications or large single-page applications. 
+
+## Interview answer 
+inline styles are written directly in the element style the CSS in the attribute only acts on the element, loading speed is fast but cannot be reused, and maintenance cost is high; <link>the introduction of independent CSS files, can be centrally managed, reusable, suitable for large projects, but requires additional network requests. Usually in a production environment, we will inline the key CSS to optimize the first screen speed, and the rest of the styles will be loaded through external links for caching and maintenance.
+
+## Summary 
+inline and outreach styles have their own advantages and disadvantages in terms of loading mechanism, maintenance cost and performance. A reasonable strategy is to inline the necessary styles for the critical rendering path to improve the first screen loading speed of the page, and put most of the common styles in an external CSS file for caching and maintenance. This hybrid approach allows for both performance optimization and code maintainability.
