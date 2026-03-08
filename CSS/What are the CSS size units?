@@ -1,0 +1,24 @@
+## Foreword 
+in CSS, Dimension units are used to describe the width, height, spacing, font size, and other attribute values of an element. Choosing the right unit not only affects the visual effect of the page, but also directly affects the adaptability and cross-device performance of the layout. Mastering the characteristics and usage scenarios of various size units is the key to ensuring layout flexibility and consistency in front-end development. 
+
+## Absolute unit 
+the size of the absolute units is fixed and does not change as the parent element or viewport changes. The most commonly used absolute units are px (Pixels), it is the most intuitive and common in the screen display, suitable for scenes that require precise size control. Other absolute units such cm , mm , in , pt , pc it is mainly used for printing or specific typesetting needs, and is rarely used in actual development. 
+Absolute units have the advantage of being controllable and consistent in display, but can be inflexible in responsive design and are therefore not suitable for layout scenarios that require adaptation.
+
+## Relative units 
+the value of the relative units changes depending on the size of the parent element, root element, or viewport to accommodate different screens and resolutions. 
+em based on the font size of the current element,1em equal to the current element's font-size which is commonly used for font-related spacing and scaling layouts. rem based on the root element (usually html label) font size calculation, avoiding em the cumulative effect of the hierarchy is more suitable for global proportional control. 
+% represents the percentage size relative to the parent element, and is often used for adaptive layout of width, height, and inside and outside margins. 
+vw and vh percentage units relative to the width and height of the viewport, respectively, such 50vw represents half the width of the viewport. vmin and vmax represents a percentage of the smaller or larger value relative to the viewport width and height, useful in full-screen layouts and responsive design. 
+
+## Special Units 
+CSS also provides some special units to deal with specific scenarios. For example ch indicates the width of the number "0", which is suitable for typesetting of equal-width fonts; exIndicates the x-height of the font, that is, the height of the lowercase "x", used for fine typographic control. These units can improve the accuracy and consistency of typography in specific scenes. 
+
+## Use Recommendations and Boundary Cases 
+in responsive design, commonly used rem , % , vw equal relative units to achieve adaptation, do not rely on fixed pixels, so as to adapt to different devices. Absolute units are suitable for elements that require fixed dimensions, such as icons, borders, or precisely positioned UI elements. When mixing, be aware that some units may render slightly differently on different browsers and devices, such as mobile devices. vh support for is affected when the soft keyboard pops up. 
+
+## Interview answer 
+CSS dimension units are divided into absolute units and relative units. Absolute units such px fixed, suitable for precise layout; Relative units such em , rem , % , vw , vh changes based on font size, parent element, or viewport size, making it more suitable for responsive design. In actual development, the global proportional control is generally used.rem , the component internal adaptation is used. % or em , for full-screen layout vw , vh . 
+
+## Summary 
+choosing the right CSS size unit is the basis of layout design. Absolute units provide precise dimensional control, while relative units bring adaptive capabilities. Understanding the computational benchmarks and characteristics of different units can help developers achieve stable and flexible page layouts across different devices, resolutions, and scenarios.
