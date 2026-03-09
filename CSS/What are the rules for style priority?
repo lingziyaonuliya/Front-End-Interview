@@ -1,0 +1,21 @@
+#### Foreword 
+in CSS, multiple styles may be applied to the same element at the same time, and the browser will decide which style to apply based on style priority (specification) rules. Having priority rules is an important foundation for ensuring that styles take effect correctly and avoiding accidental overrides, especially in large projects or multi-person collaborative development, where style conflicts and overrides are common. 
+
+#### The computer system of style priority. 
+CSS priority is calculated according to the type of selector, usually with four digits (a, B, c, d) to represent, the higher the value of the higher the priority. 
+a indicates whether it is an inline style. The priority of the inline style is the highest. If the value is 1, all other styles can be overwritten. ! important style. B represents the number of ID selectors in the selector, and this bit is increased by 1 for each ID selector. c represents the number of class selectors, attribute selectors, and pseudo-class selectors. d represents the number of element selectors and pseudo-element selectors. 
+When calculating, the browser will compare the values of a → B → c → d in turn until the high and low are separated. For example, #header .nav li the priority is 0,1,1,1, .nav li.active 0,0,2,1 high.
+
+#### Special cases affecting priority 
+there are three special cases that directly affect the priority decision. 
+The first is ! important keyword, which gives the current declaration the highest priority in comparisons of the same property, but does not cross different CSS sources (such as conflicts between user style sheets and browser default styles). The second is that inherited styles have no precedence, they only take effect when there is no more specific style. The third is that the browser's default style sheet has the lowest priority and is usually overridden by any developer-defined style. 
+
+#### Application scenarios and considerations 
+in daily development, it is not recommend to use frequently ! important , Because it will destroy the maintainability of the style and increase the difficulty of covering. A better approach is to use a reasonable selector structure and style organization to avoid conflicts, such as using scoped styles in componentized development, or keeping selectors concise in global styles. 
+In large projects, if multiple style sources work at the same time, such as browser default styles, third-party UI Library styles, and custom styles, the priority calculation plus the loading order will determine the final result. Therefore, in addition to priority rules, you need to consider the CSS load order and override policy. 
+
+#### Interview answer
+CSS style priority is the browser's rule for determining the order in which conflicting styles will take effect. The priority calculation rule is: the in-line style is the highest, followed by the ID selector, then the class, attribute, pseudo-class selector, and finally the element and pseudo-element selector. The styles of the same level are in the order of appearance in the CSS, and the ones defined later will overwrite the ones defined earlier. ! important will give this declaration the highest priority in the same attribute comparison, but abuse is not recommended. 
+
+#### Summary 
+style priority rules are the core mechanism for CSS conflict resolution, understanding the calculation methods of a, B, c, d and ! important can help developers precisely control the order in which styles take effect in complex projects. Combining reasonable selector structure, componentized style management and loading sequence control can effectively reduce style conflicts and overriding problems.
