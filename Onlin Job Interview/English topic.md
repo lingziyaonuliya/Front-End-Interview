@@ -730,3 +730,38 @@ HTTP/2 optimizes the Critical Rendering Path primarily through **Multiplexing**,
 As default, the images are 'low' priority, This causes a delay for the LCP element, and if we set 'high' priority to the LCP images, the browser starts downloading the images immediately, even before it finishes processing other render-blocking resources.
 
 This reduces the Resource Load Time, which gets faster LCP.
+
+##### Why do we need third-party state management tools? Isn't React Context API enough?
+Context API is good for solving the 'Prop Drilling' problem. But it can cause a major performance bottleneck.
+When a context value changes, every component that consumes that Context will re-render, even if it only needs a small piece of the data.So for some high frequency or complex state changes scenario, we need third-party tools to ensure reactivity-only re-render the components that actually use changed data.
+
+##### What's the immutable rule in React?
+It's not allowed to mutate state directly in React.
+React do this because of performance, React detemines whether a component needs to re-render by doing a shallow comparison of the ols state and the new state.
+Once we try to mutate an object directly, its memory reference stays exactly the same, and React chaecks the reference hasn't changed, it skips the UI update.
+
+##### What's prop drilling?
+It's the process of passing data from a top-level parent component down to a deeply nested child component by threading it through nultiple layers of intermediate components.
+It has a problem that the middle components don't actually need or use tha data, this can make the code really hard to read and maintain.
+That's why we need Context API or third-party state mangers which allows the deeply nested child to 'teleport' the data directly from a global store.
+
+##### When would you lift the state up vs putting it into the global store？
+The gloden rule is always to keep state as close to where it's used as possible.
+I will choose to 'lefting state up' when the state is only shared between closely related componets, like siblings.
+And when the data is a core business entity accessed by completely unrelated components across different routes or when lefting state up results in severe 'prop drilling'.
+
+##### What's a selector? And why is it important for performance?
+A selector is essentially a pure function that extracts or derives specific pieces of data from the gloabal state tree.
+And it's critical for performance comes down to React's rendering mechanism. Components will re-render every time any value in the store changes without using a selector, even if the component is completely unrelated to that component.In large application, this causes massive performance bottelneck.
+And with selector, the component will re-render when the specific slice of state returned by the selector actually changed.
+
+##### How do you handle asynchronous logic in Redux?
+In Redux, reducers must be pure and synchronous functions.If we want to handle asynchronous logic, we have to use middleware.
+The middleware can intercept the action, performs the asynchronous task and dispatches standard, synchronous actions back to the store.
+
+##### Explain the concept of a reducer.
+A reducer is simply a pure function, it takes two arguments, the current state and an action object, and it calculate and return the new state.
+It has two strict rules: must be completely pure, and must never mutate existing state, it aloways return a brand new object.
+
+##### How do you deal with state reset when a user logs out?
+Intercept the logout action in the top level using a root reducer. When the logout action is dispatched, the root reducer intercepts it and reasignes the entire state tree to undefiend then passes the undefined state down to all the combined reducers.
