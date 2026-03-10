@@ -1,0 +1,23 @@
+#### Foreword 
+CSS selectors are a basic tool for locating elements and applying styles in front-end development. Different types of selectors have different matching ranges and priorities, and understanding their types and priority rules is the key to ensuring that the style works accurately. Rational use of selectors can improve code efficiency and reduce redundancy and conflict. 
+
+#### Classification and characteristics of CSS selector 
+CSS selectors are mainly divided into three categories: simple selectors, combination selectors, and pseudo-element selectors. 
+Simple selectors include element selectors (e. G. div , p ), class selectors (such .className ),ID selector (such #idName ), property selectors (such [type="text"] ) and matching selector ( * ). 
+The combination selector achieves more precise positioning by connecting multiple simple selectors, including descendant selectors (spaces, such div p ), child selector ( &gt;&gt; , such ul &gt; li ), adjacent sibling selectors (+ , such h1 + p ), the universal brother selector ( ~ , such h1 ~ p ), etc. 
+Pseudo-class selectors are used to select a specific state of an element, such :hover , :focus , : nth-child() etc; The pseudo-element selector is used to select part of an element, such ::before and ::after for adding decorative content. 
+
+#### Priority rules for selectors 
+the selector priority is sorted in the following order: Inline Style&gt; ID Selector&gt; Class, Attribute, and Pseudo-Class Selector&gt; Element and Pseudo-Element Selector. 
+In specific calculations, different weights are given to each selector, with the ID selector having the highest weight, the class selector second, and the element selector having the lowest weight. When multiple selectors exist at the same time, the weights are accumulated. For example, the selector div#header.nav.active the priority is calculated as ID selector 1, class selector 2, element selector 1, and the overall priority is higher.
+The pseudo-class selector is considered part of the class selector, and the pseudo-element selector is considered an element selector. General selector * no increase in priority. 
+
+#### Attention Points Used by Selectors 
+overly complex selectors can degrade CSS performance, increase the computational burden on the browser, and be difficult to maintain. Recommend use a clear, concise, and semantic selector structure. Avoid abuse of the ID selector, because its high priority may make the style difficult to override. 
+In componentized development, it is common to use class selectors in combination with scope styles to achieve style isolation and reuse. 
+
+#### Interview answer 
+CSS selectors include element selectors, class selectors, ID selectors, attribute selectors, combination selectors, and pseudo-class and pseudo-element selectors. Their priority is the highest in-line style, followed by the ID selector, then the class, attribute, and pseudo-class selector, and finally the element and pseudo-element selector. The style with high priority will overwrite the style with low priority, and the priority will accumulate when multiple selectors are combined. 
+
+#### Summary 
+mastering the types of CSS selectors and their priority rules is the basis for writing efficient, maintainable styles. Reasonable selection and combination of selectors can not only accurately locate the target element, but also help avoid style conflicts and unnecessary performance loss. The combination of component development and style scope management can further improve the style quality of the project.
