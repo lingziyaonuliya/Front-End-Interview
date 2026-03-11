@@ -1,0 +1,18 @@
+foreword 
+in CSS, attribute values often need to be calculated dynamically based on different conditions. calc() functions are a powerful feature introduced in CSS3 that allows mathematical calculations to be performed in style declarations. It makes the layout more flexible, can mix the values of different units, solves the limitations of traditional unit fixation, and is a common weapon in responsive design and complex layout. 
+
+Principle and Usage of calc() Function 
+calc() the function allows addition (+), subtraction (-), multiplication ( * ), divide (/) and other basic arithmetic operations. It supports mixed units, such as percentages and pixels, and the browser dynamically parses the results. 
+When used, the expression must contain spaces, such width: calc(100% - 50px); , otherwise it will cause a parsing error. Multiplication and division operations need to be used with caution, especially division cannot be used between two values with units, otherwise it will cause syntax errors. 
+calc() commonly used for attributes such as width and height, margin, font size, positioning, etc., you can achieve the effect of element width minus fixed pixel spacing, font dynamic adjustment relative to container size, and so on. 
+
+Application scenarios and limitations 
+in a responsive layout, calc()You can combine percentages and fixed units to solve size adaptation problems, such as setting the container width calc(100% - 2rem) , both to ensure the relative width, but also to reserve a fixed margin space. 
+In addition, calc() negative calculation is also supported and can be used to create complex offset and overlap effects. 
+It should be noted that, calc() cannot be used in some CSS properties such z-index , flex-grow and different browsers may also have different support for it, but modern mainstream browsers have better support. 
+
+Interview answer 
+calc() it is a calculation function provided by CSS3, which allows us to write mathematical expressions in style attributes, supports addition, subtraction, multiplication and division, and can mix and use different units, solving the problem that unit restrictions and fixed values are difficult to adapt. It is very practical in layout size, spacing and positioning, such as through width: calc(100% - 20px) implement adaptive width minus fixed margins. 
+
+Summary 
+calc() functions greatly enrich the flexibility of CSS in layout and size control, making the design more dynamic and responsive. Rational Usecalc() which can reduce additional JavaScript calculations and improve page performance and style expression. Understanding its grammatical rules and scope of application is an important skill for modern front-end development.
