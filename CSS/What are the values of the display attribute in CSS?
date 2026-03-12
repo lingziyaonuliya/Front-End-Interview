@@ -1,0 +1,23 @@
+Foreword 
+display attribute is one of the most core attributes in CSS, which controls the layout of elements in the page. It determines how an element generates a box and how the box participates in the layout process. Master display the various values and their roles are important for understanding the layout of web pages, implementing complex typography, and optimizing the user experience. 
+
+Common values and functions of the display attribute 
+display the basic values of include block , inline and inline-block . block the element has an exclusive row, and the width is full of the parent container by default; inline the element does not wrap, and the width is determined by the content; inline-block the combination of the two features allows you to set the width and height like a block element while maintaining an inline arrangement. 
+In addition, display also support noneWhich is used to hide the element completely and does not take up space. 
+Common values for modern layouts are flex and grid , corresponding to the elastic box model and the grid layout, respectively. flex let the child element can flexibly allocate space, suitable for one-dimensional layout; grid suitable for two-dimensional layout, support row and column control at the same time. 
+Other values such table , table-row , table-cell and so on are used to simulate table layouts. 
+And there's list-item , representing a list item, produces a bullet. 
+
+The layout impact of the display property 
+display it not only determines whether an element occupies space, but also affects the type of box model it generates and its relationship to other elements. For example, block-level elements will trigger line breaks and parent element height spread, while in-line elements will not. 
+Switch display value is a common technique in layout debugging, especially when converting elements from in-line to block level to adjust typography.
+
+Boundary conditions and compatibility 
+the degree of support for some display values varies slightly by browser, such as older browsers flex and grid has limited support and requires the use of prefixes or compatible schemes. 
+display: contents allowing an element to not generate a box by itself, but retain child elements, is suitable for some semantics and auxiliary layout needs, but may lead to accessibility problems in some scenarios. 
+
+Interview answer 
+of CSS. display property controls the layout behavior of the element. Common values are block (Block-level element, exclusive line), inline (In-line elements, no line breaks), inline-block (Inline block, which can set width and height without line wrapping), none (Hidden elements). Also in the modern layout flex and grid for elastic box and grid layouts, respectively. By adjusting display, you can change the layout characteristics of elements and the way they participate in document flow. 
+
+Summary 
+display attributes are at the heart of CSS layout, providing flexible layout patterns with multiple values. Understanding the performance and applicable scenarios of different values is the key to mastering the layout of web pages and achieving complex interaction effects. Combined with modern layout technology, a responsive and compatible interface design can be achieved.
