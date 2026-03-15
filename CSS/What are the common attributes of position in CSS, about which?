@@ -1,0 +1,26 @@
+Foreword 
+position it is an important attribute that controls the positioning of elements in CSS. It determines the positioning and arrangement rules of elements in the page. Understanding the differences and applications of various positioning methods is the basis for achieving complex layouts, flexible designs, and interactive effects. 
+
+Common position attribute values and their meanings 
+position there are five main values: static , relative , absolute , fixed and sticky . 
+The default value is static , Indicates that the elements follow the normal arrangement of the document flow without special positioning. 
+relative offset the element relative to its normal position, the offset does not affect the layout of other elements, occupying the original position space. 
+absolute keep the element out of the document flow, relative to the nearest positioned ancestor element (not. static) for positioning. If no ancestor is positioned, it is positioned relative to the document root element. 
+fixed make the element fixed in the specified position in the browser viewport, even if the page scrolls will not move, often used for hovering navigation or back to the top button. 
+sticky it is a combination of relative positioning and fixed positioning, with elements showing relative positioning before crossing a specific rolling threshold and fixed positioning after exceeding the threshold, suitable for achieving a sticky head effect. 
+
+Use of Positioning Attributes 
+cooperation position common properties used are top , right , bottom , left which specifies the offset distance of the element. For relative , absolute , fixed and sticky effective, static not supported.
+Under absolute positioning and fixed positioning, elements are separated from the document flow and do not occupy the original space, which may cause the parent container to collapse in height and require additional processing. 
+
+Application scenarios and considerations 
+relative positioning is often used as a reference container for absolutely positioned elements, or when fine-tuning element positions. 
+absolute positioning is suitable for pop-up layers, tooltips, floating menus, and other scenarios that need to be separated from the document flow. 
+fixed locate elements that fit fixed navigation bars, floating buttons, etc. fixed in the viewport. 
+sticky positioning is becoming more and more popular in modern browsers and is used to achieve the effect of table head suction, sidebar adhesion, etc., but it depends on the settings of the scrolling container, and some browser compatibility needs attention. 
+
+Interview answer 
+of CSS. position there are five common values for attributes: static is the default normal document flow arrangement; relative offset from the element's own normal position; absolute out of the document stream, locate the nearest ancestor; fixed out of the document flow, fixed in the viewport position; stickyCombined with relative and fixed positioning, elements are fixed when scrolling to a threshold. Cooperation top , left properties such as controlling specific offsets. 
+
+Summary 
+master position the various values of attributes and their positioning mechanisms are the basis for achieving diversified web page layouts and complex interactive effects. Reasonable selection of positioning methods, combined with offset attributes, can flexibly control the location and hierarchical relationship of elements in the page, thereby improving user experience and page expressiveness.
